@@ -1,34 +1,55 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Gaming Forum app
 
-## Getting Started
+- Next.js + REST
 
-First, run the development server:
+## MVP
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+Please divide your features in 3 priorities
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Prio 1 (must features)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- Profile editing
+  - predefined avatar support
+- Post a new Topic
+- Commenting on the topic
+- HTML support (html sanitizer)
+- Integration with an html editor/ library/component
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Prio 2 (nice to have features)
 
-## Learn More
+- Search feature
+- Image upload (cloudinary)
+- friends request
 
-To learn more about Next.js, take a look at the following resources:
+### Prio 3 (features for develop after the bootpcamp)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Role creation
+  - moderators
+  - Admin
+  - only read users
+  - user rank
+- email integration for password update and notifications
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Wireframes
 
-## Deploy on Vercel
+TODO: create wireframes for the app
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Database Design
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- create a database schema
+  Please Create an API design as shown in the API lecture and define the endpoints
+
+## Create An API design
+
+TODO: api design
+/api/topics/
+
+- POST => topic
+- GET => topic[]
+  /api/topics/:id/comments
+- GET =>
+- POST =>
+
+## Schedule
+
+Once you have this tasks come back to a mentor/teacher for feedback
