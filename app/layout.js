@@ -12,12 +12,24 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <header>
-        <span>Gaming forum</span>
-        <span>Profile</span>
-        <span>Username</span>
-        <span>Password</span>
-        <button>Log in</button>
-        <span>Register for your free account!</span>
+        <div className="header-container">
+          <div className="site-logo">
+            <a>LOGO Gaming forum LOGO</a>
+          </div>
+          <div className="user-signin">
+            <ul>
+              <li>
+                Username: <input />
+              </li>
+              <li>
+                Password: <input />
+                <button>Log in</button>
+                <a>Sign up</a>
+                <a>Profile</a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </header>
 
       <main>

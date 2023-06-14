@@ -6,7 +6,11 @@ export default function Home() {
     <main className={styles.main}>
       <div>
         <div>
-          <span>Annoucement</span> <br />
+          <ul>
+            <li>
+              <a>Annoucement</a>
+            </li>
+          </ul>
           <span>General Chat</span> <br />
           <span>Gaming News</span> <br />
           <span>Gaming Topic</span> <br />
