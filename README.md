@@ -49,6 +49,7 @@ TODO: api design
   /api/topics/:id/comments
 - GET =>
 - POST =>
+- DELETE =>
 
 ## Schedule
 

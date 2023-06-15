@@ -1,23 +1,28 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import styles from './page.module.scss';
 
 export default function Home() {
   return (
     <main>
       <div>
-        <Link href="/register">Register</Link>
+        <div className="text-center">
+          <Link href="/register">Register</Link>
+        </div>
         <div>
-          <div className={styles.test}>
-            <h2>GAMING FORUM - VIDEO GAME FORUMS</h2>
+          <div>
+            <h2 className="font-inter box-border h-10 max-w-md flex items-center   w-50 p-4 border-1 px-3 py-4 b bg-[#0d202d] text-white">
+              GAMING FORUM - VIDEO GAME FORUMS
+            </h2>
           </div>
           <ul>
-            <li>
+            <li className="text-red">
               <Link href="/topics/announcements">Announcements</Link>
             </li>
           </ul>
           <div>
-            <h2 className='widget-title"'>VIDEO GAME DISCUSSIONS</h2>
+            <h2 className="font-inter box-border h-10 max-w-md flex items-center   w-50 p-4 border-1 px-3 py-4 b bg-[#0d202d] text-white">
+              VIDEO GAME DISCUSSIONS
+            </h2>
             <nav>
               <ul>
                 <li>
@@ -36,7 +41,9 @@ export default function Home() {
             </nav>
           </div>
           <div>
-            <h2>COMMUNITY</h2>
+            <h2 className="font-inter box-border h-10 max-w-md flex items-center   w-50 p-4 border-1 px-3 py-4 b bg-[#0d202d] text-white">
+              COMMUNITY
+            </h2>
             <ul>
               <li>
                 <Link href="/topics/offTopic">Off Topics</Link>

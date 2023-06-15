@@ -1,4 +1,4 @@
-import './layout.globals.scss';
+import './globals.scss';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
 
@@ -11,7 +11,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-teal-500	">
       <main>
         <header>
           <div className="header-container">

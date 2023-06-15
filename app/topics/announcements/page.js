@@ -8,3 +8,10 @@ export default function Announcements() {
   );
 }
  */
+export default function Announcements() {
+  return (
+    <>
+      <p>test</p> <p>avatar</p> <p>name</p>
+    </>
+  );
+}
