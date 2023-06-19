@@ -117,6 +117,7 @@ export default function Home() {
               <li
                 className="pl-10 flex
                           items-start justify-around py-8"
+                style={{ color: 'red' }}
               >
                 <span>icon</span>
                 <div>
@@ -126,7 +127,7 @@ export default function Home() {
                 <div>
                   <dt>80</dt>
                 </div>
-                <span>img</span>
+                <span>img THIS IS A TEST</span>
                 <span>username</span>
               </li>
             </ul>

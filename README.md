@@ -1,6 +1,6 @@
 # Gaming Forum app
 
-- Next.js + REST
+- Next.js + REST + Tailwind
 
 ## MVP
 
