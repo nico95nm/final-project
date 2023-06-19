@@ -117,6 +117,7 @@ export default function Home() {
               <li
                 className="pl-10 flex
                           items-start justify-around py-8"
+                style={{ color: 'red' }}
               >
                 <span>icon</span>
                 <div>
