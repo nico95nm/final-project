@@ -127,7 +127,7 @@ export default function Home() {
                 <div>
                   <dt>80</dt>
                 </div>
-                <span>img THIS IS A TEST</span>
+                <span>img</span>
                 <span>username</span>
               </li>
             </ul>
