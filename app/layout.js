@@ -1,6 +1,7 @@
 import './globals.scss';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
+import LoginForm from './(auth)/login/LoginForm';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,17 +21,12 @@ export default function RootLayout({ children }) {
             </div>
             <div className="user-signin">
               <div>GameByte Community</div>
-
+              <div>
+                <LoginForm>Username</LoginForm>
+              </div>
               <ul>
-                <li>
-                  Username: <input />
-                </li>
-                <li>
-                  Password: <input />
-                  <button>Log in</button>
-                  <button>Sign up</button>
-                  <a>Profile</a>
-                </li>
+                <button>Sign up</button>
+                <a>Profile</a>
               </ul>
             </div>
           </div>
