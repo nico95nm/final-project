@@ -33,14 +33,14 @@ export default function RegisterForm() {
   return (
     <form onSubmit={(event) => event.preventDefault()}>
       <label>
-        username:
+        Username:
         <input
           value={username}
           onChange={(event) => setUsername(event.currentTarget.value)}
         />
       </label>
       <label>
-        password:
+        Password:
         <input
           value={password}
           onChange={(event) => setPassword(event.currentTarget.value)}
