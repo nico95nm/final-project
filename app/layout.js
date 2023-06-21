@@ -2,6 +2,7 @@ import './globals.scss';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
 import LoginForm from './(auth)/login/LoginForm';
+import RegisterForm from './(auth)/register/RegisterForm';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -24,10 +25,10 @@ export default function RootLayout({ children }) {
               <div>
                 <LoginForm>Username</LoginForm>
               </div>
-              <ul>
-                <button>Sign up</button>
-                <a>Profile</a>
-              </ul>
+              <div>
+                <Link href="/api/register">Sign Up here!</Link>
+              </div>
+              <a>Profile</a>
             </div>
           </div>
         </header>
