@@ -25,9 +25,10 @@ export default function RegisterForm() {
     }
 
     console.log(data.user);
-    router.push(`/profile/${data.user.username}`);
+    router.push(`/`);
     // we may have in the future revalidatePath()
     router.refresh();
+    console.log(data.user.username);
   }
 
   return (

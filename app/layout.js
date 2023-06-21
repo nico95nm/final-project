@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import Link from 'next/link';
 import LoginForm from './(auth)/login/LoginForm';
 import RegisterForm from './(auth)/register/RegisterForm';
+import { LogoutButton } from './LogoutButton';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -23,10 +24,10 @@ export default function RootLayout({ children }) {
             <div className="user-signin">
               <div>GameByte Community</div>
               <div>
-                <LoginForm>Username</LoginForm>
+                <LoginForm>Log In</LoginForm>
               </div>
               <div>
-                <Link href="/api/register">Sign Up here!</Link>
+                <Link href="/register">Sign Up here!</Link>
               </div>
               <a>Profile</a>
             </div>
