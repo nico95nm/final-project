@@ -47,7 +47,7 @@ export default function LoginForm(props: Props) {
         />
       </label>
       <label>
-        Password:
+        Password: dwdw
         <input
           value={password}
           type="password"
