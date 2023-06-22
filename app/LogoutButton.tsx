@@ -1,4 +1,4 @@
-/* 'use client';
+'use client';
 
 import { useRouter } from 'next/navigation';
 import { logout } from './(auth)/logout/actions';
@@ -9,8 +9,8 @@ export function LogoutButton() {
   return (
     <form>
       <button
-        className={styles.button}
-        formAction={async () => {
+        /*         className={styles.button}
+         */ formAction={async () => {
           await logout();
           router.refresh();
         }}
@@ -20,4 +20,3 @@ export function LogoutButton() {
     </form>
   );
 }
- */
