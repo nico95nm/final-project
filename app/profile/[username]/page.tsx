@@ -6,6 +6,8 @@ type Props = {
 };
 export default async function ProfileUsernamePage({ params }: Props) {
   const user = await getUserByUsername(params.username);
+  console.log(getUserByUsername);
+
   if (!user) {
     notFound();
   }

@@ -18,5 +18,5 @@
     "**/*.cjs",
     "**/*.mjs",
     ".next/types/**/*.ts"
-  ]
+, ".next/types/app/profile/[usernameme]/page.tsx"  ]
 }

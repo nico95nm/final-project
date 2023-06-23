@@ -1,4 +1,5 @@
 import { cache } from 'react';
+import { User } from '../migrations/1686731462-createUsers';
 import { sql } from './connect';
 
 type UserWithPasswordHash = User & {

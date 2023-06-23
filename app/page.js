@@ -11,6 +11,7 @@ export default function Home() {
               IMPORTANT
             </h2>
           </div>
+
           <ul className=" pt-6 p-4 flexbox justify-center ">
             <li className="pl-10 flex justify-around items-center gap-48">
               <span>icon</span>
@@ -25,6 +26,7 @@ export default function Home() {
               <span>username</span>
             </li>
           </ul>
+
           <div>
             <h2 className=" font-inter box-border h-10  flex items-center   w-50 p-4 border-1 px-3 py-4 b bg-[#0d202d] text-white ">
               VIDEO GAME DISCUSSIONS
@@ -98,32 +100,38 @@ export default function Home() {
             <h2 className="font-inter box-border h-10  flex items-center   w-50 p-4 border-1 px-3 py-4 b bg-[#0d202d] text-white ">
               COMMUNITY
             </h2>
-            <ul className="pt-6 p-2 flexbox justify-center">
-              <li className="pl-10 flex justify-around py-8 items-center ustify-center gap-48">
-                <span>icon</span>
-                <div>
-                  <Link href="/topics/offTopic">Off Topics</Link>
-                  <p className="text-black">This is a paragraph</p>
-                </div>
+            <ul>
+              <li>
+                <div className="pt-6 p-2 flexbox justify-center">
+                  <div className="pl-10 flex justify-around py-8 items-center ustify-center gap-48">
+                    <span>icon</span>
+                    <div>
+                      <Link href="/topics/offTopic">Off Topics</Link>
+                      <p className="text-black">This is a paragraph</p>
+                    </div>
 
-                <dt>80</dt>
-                <span>img</span>
-                <span>username</span>
+                    <dt>80</dt>
+                    <span>img</span>
+                    <span>username</span>
+                  </div>
+                </div>
               </li>
-              <li
-                className="pl-10 flex justify-around py-8 items-center ustify-center gap-48"
-                style={{ color: 'red' }}
-              >
-                <span>icon</span>
-                <div>
-                  <Link href="/generalChat">Intorduction</Link>
-                  <p className="text-black">This is a pasddsdagraph</p>
+              <li>
+                <div
+                  className="pl-10 flex justify-around py-8 items-center ustify-center gap-48"
+                  style={{ color: 'red' }}
+                >
+                  <span>icon</span>
+                  <div>
+                    <Link href="/generalChat">Intorduction</Link>
+                    <p className="text-black">This is a pasddsdagraph</p>
+                  </div>
+                  <div>
+                    <dt>80</dt>
+                  </div>
+                  <span>img</span>
+                  <span>username</span>
                 </div>
-                <div>
-                  <dt>80</dt>
-                </div>
-                <span>img</span>
-                <span>username</span>
               </li>
             </ul>
           </div>
