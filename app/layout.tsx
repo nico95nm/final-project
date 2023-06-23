@@ -8,6 +8,7 @@ import { reactStrictMode } from '../next.config';
 import LoginForm from './(auth)/login/LoginForm';
 import RegisterForm from './(auth)/register/RegisterForm';
 import { LogoutButton } from './LogoutButton';
+import AvatarPage from './profile/[username]/Avatar';
 
 const inter = Inter({ subsets: ['latin'] });
 type Props = {
@@ -65,7 +66,12 @@ export default async function RootLayout({ children }: Props) {
           <div>
             {user ? (
               <>
-                <div>{user.username}</div>
+                <div>
+                  <AvatarPage username={user.username} />
+                  <Link href={`/profile/${user.username}`}>
+                    {user.username}
+                  </Link>
+                </div>
                 <LogoutButton />
               </>
             ) : (
