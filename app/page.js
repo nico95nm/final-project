@@ -2,6 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Home() {
+  const pages = {};
+
   return (
     <main>
       <div>
@@ -16,7 +18,7 @@ export default function Home() {
             <li className="pl-10 flex justify-around items-center gap-48">
               <span>icon</span>
               <div>
-                <Link href="/topics/announcements">Announcements</Link>
+                <Link href="/announcements">Announcements</Link>
                 <p className="text-black">
                   This is a page for a this sites announcements.
                 </p>
@@ -36,7 +38,7 @@ export default function Home() {
                 <li className="pl-10 flex justify-around items-center gap-48">
                   <span>icon</span>
                   <div>
-                    <Link href="/topics/generalChat">General Games Chat</Link>
+                    <Link href="/generalChat">General Games Chat</Link>
                     <p className="text-black trudance">
                       This is the forum to post any general topics relating to
                       gaming at large. Chat about your favorite games, recent
@@ -51,7 +53,7 @@ export default function Home() {
                 <li className="pl-10 flex ustify-center justify-around py-4 items-center gap-48">
                   <span>icon</span>
                   <div>
-                    <Link href="/topics/gamingNews">Gaming News</Link>
+                    <Link href="/gamingNews">Gaming News</Link>
                     <p className="text-black">
                       Catch up on the latest buzz in the gaming world. Here you
                       can discuss news and rumors on games, developers and more.
@@ -66,7 +68,7 @@ export default function Home() {
                   <div className="pl-10 flex ustify-center justify-around py-4 items-center gap-48">
                     <span>icon</span>
                     <div>
-                      <Link href="/topics/gamingTopic">Gaming Topic</Link>
+                      <Link href="/gamingTopic">Gaming Topic</Link>
                       <p className="text-black">
                         This is the forum to post any general topics relating to
                         gaming at large. Chat about your favorite games, recent
@@ -82,7 +84,7 @@ export default function Home() {
                 <li className="pl-10 flex	justify-around py-4 items-center ustify-center gap-48">
                   <span>icon</span>
                   <div>
-                    <Link href="/topics/gamingMusic">Gaming Music</Link>
+                    <Link href="/gamingMusic">Gaming Music</Link>
                     <p className="text-black">
                       Gaming forum buzzing with discussions on captivating video
                       game soundtracks, where users share favorites, recommend
@@ -106,7 +108,7 @@ export default function Home() {
                   <div className="pl-10 flex justify-around py-8 items-center ustify-center gap-48">
                     <span>icon</span>
                     <div>
-                      <Link href="/topics/offTopic">Off Topics</Link>
+                      <Link href="/offTopic">Off Topics</Link>
                       <p className="text-black">This is a paragraph</p>
                     </div>
 

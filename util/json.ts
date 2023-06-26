@@ -1,5 +1,5 @@
 import sjson from 'secure-json-parse';
-import { CookieCommentItem } from '../app/fruits/[fruitId]/page';
+import { CookieCommentItem } from '../app/announcements/[announcements]/page';
 
 export function parseJson(
   stringifiedJson: string,

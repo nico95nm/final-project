@@ -59,27 +59,27 @@ export default async function RootLayout({ children }: Props) {
   return (
     <html lang="en" className="bg-[#ACC8E5] text-[#142C47] box-border">
       <body>
-        <nav className="flex justify-evenly items my-8 p-8">
-          <div>
-            <Link href="/">LOGO Gaming Galaxy LOGO</Link>
-          </div>
-          <div>
-            {user ? (
-              <>
-                <div>
-                  <AvatarPage username={user.username} />
-                  <Link href={`/profile/${user.username}`}>
-                    {user.username}
-                  </Link>
-                </div>
-                <LogoutButton />
-              </>
-            ) : (
-              <>
-                <Link href="/register">register</Link>
-                <Link href="/login">login</Link>
-              </>
-            )}
+        <nav>
+          <div className=" pt-6 p-4 flexbox justify-center">
+            <div className="pl-10 flex justify-around items-center gap-48">
+              <Link href="/">LOGO Gaming Galaxy LOGO</Link>
+              {user ? (
+                <>
+                  <div>
+                    <AvatarPage username={user.username} />
+                    <Link href={`/profile/${user.username}`}>
+                      {user.username}
+                    </Link>
+                  </div>
+                  <LogoutButton />
+                </>
+              ) : (
+                <>
+                  <Link href="/register">register</Link>
+                  <Link href="/login">login</Link>
+                </>
+              )}
+            </div>
           </div>
         </nav>
         {children}
