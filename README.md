@@ -9,11 +9,11 @@ Please divide your features in 3 priorities
 ### Prio 1 (must features)
 
 - Profile editing
-  - predefined avatar support
+  - predefined avatar support [-]
 - Post a new Topic
 - Commenting on the topic
 - HTML support (html sanitizer)
-- Integration with an html editor/ library/component
+- Integration with an html editor/ library/component [-]
 
 ### Prio 2 (nice to have features)
 
@@ -54,3 +54,27 @@ TODO: api design
 ## Schedule
 
 Once you have this tasks come back to a mentor/teacher for feedback
+
+## Main functanalaty
+
+1. Create Migration for Topics [-]
+2. Create migration for TopicComments[-]
+   3.Confrn that it exist in database[-]
+   4.Create TopicForm in front end simmilar as AnnouncementForm[]
+   if its go to topic page(ask)[]
+3. Instide of TopicForm I need title of the topic and need user.id[]
+   How do I get user.id? []
+   " const cookieStore = cookies();
+   const sessionToken = cookieStore.get('sessionToken');
+
+const user = !sessionToken?.value
+? undefined
+: await getUserBySessionToken(sessionToken.value);
+"
+6.Create topic API endpoint(rout) []
+7.create the topic []
+8.database querry topic (same CreateUser) []
+9.use querry on the topic rout []
+10.display topics on the frontend. []
+11.single topic page is the where to user to create a topic>> []
+12.user id, topic id, user comment send to announcemnt rout []

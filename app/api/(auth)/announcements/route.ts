@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { z } from 'zod';
+import { string, z } from 'zod';
 import {
   createComment,
   deleteCommentById,
@@ -7,22 +7,22 @@ import {
   getComments,
   postCommentById,
   updateCommentById,
-} from '../../../../../database/comment';
-import { Comment, Error } from '../route';
+} from '../../../../database/comment';
 
-type CommentsResponseBodyPost = { comment: Comment } | Error;
+type Error = { error: string };
+
+type CommentsResponseBodyPost = { comment: string } | Error;
 type CommentsResponseBodyGet = { comment: Comment } | Error;
 type CommentsResponseBodyDelete = { comment: Comment } | Error;
 type CommentsResponseBodyPut = { comment: Comment } | Error;
 
 const commentSchema = z.object({
-  topic: z.string(),
   comment: z.string(),
 });
 
 export async function POST(
   request: NextRequest,
-): Promise<NextResponse<AnimalsResponseBodyPost>> {
+): Promise<NextResponse<CommentsResponseBodyPost>> {
   const body = await request.json();
 
   // zod please verify the body matches my schema
@@ -39,8 +39,8 @@ export async function POST(
     );
   }
   // query the database to get all the animals
-  const animal = await createComment(result.data.topic, result.data.comment);
-
+  const animal = await createComment('hello', result.data.comment);
+  console.log('Testing', animal);
   if (!animal) {
     // zod send you details about the error
     // console.log(result.error);
@@ -51,8 +51,11 @@ export async function POST(
       { status: 500 },
     );
   }
+  /* rename animal to comment  */
+  /* topic.id */
+
   // query the database to get all the animals
-  const comment = await getCommentById(commentId);
+  /*  const comment = await getCommentById(animal.id);
 
   if (!comment) {
     return NextResponse.json(
@@ -61,9 +64,9 @@ export async function POST(
       },
       { status: 404 },
     );
-  }
+  } */
 
-  return NextResponse.json({ comment: comment });
+  return NextResponse.json({ comment: animal.comment });
 }
 
 export async function DELETE(

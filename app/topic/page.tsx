@@ -3,9 +3,9 @@
 import { useRouter } from 'next/navigation';
 import { ChangeEvent, useState } from 'react';
 import { Comments } from '../../database/comment';
-import { createOrUpdateComment } from './[announcements]/actions';
-import CommentThreadForm from './AnnoucementForm';
+import { createOrUpdateComment } from './[topics]/actions';
 import style from './page.module.scss';
+import CommentThreadForm from './TopicForm';
 
 // {id: number, comment: string}[]]
 
@@ -14,7 +14,7 @@ type Props = {
 };
 
 export default function CommentPage(props: Props) {
-/*   const [comment, setComment] = useState('');
+  /*   const [comment, setComment] = useState('');
   const [error, setError] = useState('');
   // If you need to have a type parameter for the useState (either
   // undefined or a string)

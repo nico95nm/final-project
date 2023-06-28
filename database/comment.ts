@@ -2,26 +2,41 @@ import { cache } from 'react';
 import { Comment } from '../migrations/1686916408-createTableComments';
 import { sql } from './connect';
 
-export const getComments = cache(async () => {
-  const comments = await sql<Comments[]>`
-    SELECT * FROM comments
+export const Comments = cache(async () => {
+  const comments = await sql<Comment[]>`
+    SELECT * FROM comment
  `;
 
   return comments;
 });
+export const createComment = cache(
+  async (topic: string, commentInput: string) => {
+    const [comment] = await sql<Comment[]>`
+    INSERT INTO comments
+      (topic, comment)
+    VALUES
+      (${topic}, ${commentInput})
+    RETURNING
+      id,
+      comment
+ `;
 
-export const getAnimalsWithLimitAndOffset = cache(
+    return comment;
+  },
+);
+
+export const getCommentsWithLimitAndOffset = cache(
   async (limit: number, offset: number) => {
-    const animals = await sql<Animal[]>`
+    const comments = await sql<Comment[]>`
       SELECT
         *
       FROM
-        animals
+        comments
       LIMIT ${limit}
       OFFSET ${offset}
     `;
 
-    return animals;
+    return comments;
   },
 );
 
@@ -52,7 +67,7 @@ export const getCommentsWithLimitAndOffsetBySessionToken = cache(
   },
 );
 
-export const getCommentById = cache(async (id: number) => {
+export const getCommentsById = cache(async (id: number) => {
   const [comment] = await sql<Comment[]>`
     SELECT
       *
@@ -64,33 +79,35 @@ export const getCommentById = cache(async (id: number) => {
   return comment;
 });
 
-export const createComment = cache(async (topic: string, comment: string) => {
-  const [comments] = await sql<Comment[]>`
-      INSERT INTO animals
-        (first_name, type, accessory)
-      VALUES
-        (${topic}, ${comment})
-      RETURNING *
-    `;
-
-  return comments;
-});
-
 export const updateCommentById = cache(
   async (id: number, topic: string, comment: string) => {
-    const [comment] = await sql<Comment[]>`
+    const [comments] = await sql<Comment[]>`
       UPDATE comments
       SET
         topic = ${topic},
-        comment = ${comment}
+        comment = ${comment}}
       WHERE
         id = ${id}
         RETURNING *
     `;
 
-    return comment;
+    return comments;
   },
 );
+export const postCommentById = cache(async (topic: string, comment: string) => {
+  const [user] = await sql<Comment[]>`
+    INSERT INTO users
+      (topic, comment)
+    VALUES
+      (${topic}, ${comment})
+    RETURNING
+      id,
+      topic,
+      comment
+ `;
+
+  return user;
+});
 
 export const deleteCommentById = cache(async (id: number) => {
   const [comment] = await sql<Comment[]>`
@@ -100,20 +117,51 @@ export const deleteCommentById = cache(async (id: number) => {
       id = ${id}
     RETURNING *
   `;
-  return Comment;
+  return comment;
 });
-
-export const editComments = cache(async (id: number) => {
-  const editComment = await sql<EditComment[]>`
+// also ask for this
+export const getComments = cache(async (id: number) => {
+  const newComment = await sql<newComment[]>`
    SELECT
-     comment.id AS comment_id,
-     comment.first_name AS comment_topic,
-     comment.type AS comment_comment,
+     comments.id AS comments_id,
+     comments.topic AS comments_topic,
+     comments.comment AS animals_type
     FROM
      comments
     INNER JOIN
-      editComment ON comment.id = editComment.comment_id
-    WHERE comment.id = ${id}
+      animal_foods ON animals.id = animal_foods.animal_id
+    INNER JOIN
+      foods ON foods.id = animal_foods.food_id
+    WHERE comments.id = ${id}
   `;
-  return editComment;
+  return newComment;
+});
+
+// Join query for getting a single animal with related foods using json_agg
+export const getCommentById = cache(async (id: number) => {
+  const [comment] = await sql<AnimalWithFoodsInJsonAgg[]>`
+SELECT
+  comments.id AS comment_id,
+  comments.topic AS topic,
+  comment.comment AS comment_comment,
+  (
+    SELECT
+      json_agg(foods.*)
+    FROM
+      animal_foods
+    INNER JOIN
+      foods ON animal_foods.food_id = foods.id
+    WHERE
+      animal_foods.animal_id = animals.id
+
+  ) AS animal_foods
+FROM
+  animals
+WHERE
+  animals.id = ${id}
+GROUP BY
+  animals.first_name, animals.type, animals.accessory, animals.id;
+  `;
+
+  return comment;
 });

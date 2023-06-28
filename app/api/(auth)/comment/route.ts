@@ -2,13 +2,13 @@ import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import {
-  createAnimal,
-  getAnimalsWithLimitAndOffsetBySessionToken,
+  createComment,
+  getCommentsWithLimitAndOffsetBySessionToken,
 } from '../../../../database/comment';
+import { getValidSessionByToken } from '../../../../database/sessions';
 import { createOrUpdateComment } from '../../../announcements/[announcements]/actions';
-import { getValidSessionByToken } from '../../../database/sessions';
 
-export type Animal = {
+export type Comment = {
   id: number;
   topic: string;
   comment: string;
@@ -18,18 +18,17 @@ export type Error = {
   error: string;
 };
 
-type AnimalsResponseBodyGet = { animals: Animal[] } | Error;
-type AnimalsResponseBodyPost = { animal: Animal } | Error;
+type CreatesResponseBodyGet = { comments: Comment[] } | Error;
+type CommentsResponseBodyPost = { comment: Comment } | Error;
 
-const animalSchema = z.object({
-  firstName: z.string(),
-  type: z.string(),
-  accessory: z.string().optional(),
+const commentSchema = z.object({
+  topic: z.string(),
+  comment: z.string(),
 });
 
 export async function GET(
   request: NextRequest,
-): Promise<NextResponse<AnimalsResponseBodyGet>> {
+): Promise<NextResponse<CreatesResponseBodyGet>> {
   const { searchParams } = new URL(request.url);
 
   // 1. get the token from the cookie
@@ -64,13 +63,13 @@ export async function GET(
   }
 
   // query the database to get all the animals only if a valid session token is passed
-  const animals = await getAnimalsWithLimitAndOffsetBySessionToken(
+  const comments = await getCommentsWithLimitAndOffsetBySessionToken(
     limit,
     offset,
     sessionTokenCookie.value,
   );
 
-  return NextResponse.json({ animals: animals });
+  return NextResponse.json({ comments: comments });
 }
 
 export async function POST(
@@ -79,7 +78,7 @@ export async function POST(
   const body = await request.json();
 
   // zod please verify the body matches my schema
-  const result = animalSchema.safeParse(body);
+  const result = commentSchema.safeParse(body);
 
   if (!result.success) {
     // zod send you details about the error
@@ -96,13 +95,13 @@ export async function POST(
     result.data.topic,
     result.data.comment,
   );
-
+  // Ask Jose about this and above
   if (!comment) {
     // zod send you details about the error
     // console.log(result.error);
     return NextResponse.json(
       {
-        error: 'Error creating the new animal',
+        error: 'Error creating comment',
       },
       { status: 500 },
     );
