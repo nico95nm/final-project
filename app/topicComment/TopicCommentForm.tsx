@@ -2,19 +2,13 @@
 
 import { useRouter } from 'next/navigation';
 import { ChangeEvent, useState } from 'react';
-import { Topics } from '../../database/topics';
-import { getUserBySessionToken } from '../../database/users';
-import { cookies } from '../../util/cookies';
-import style from './page.module.scss';
-
-// {id: number, comment: string}[]]
 
 type Props = {
-  topicId: number;
+  topicCommentstId: number;
 };
 
-export default function TopicThreadForm(props: Props) {
-  const [topic, setTopic] = useState('');
+export default function TopicCommentsThreadForm(props: Props) {
+  const [topicComment, setTopicComment] = useState('');
   const [error, setError] = useState('');
   // If you need to have a type parameter for the useState (either
   // undefined or a string)
@@ -22,14 +16,14 @@ export default function TopicThreadForm(props: Props) {
   const router = useRouter();
 
   function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
-    setTopic(event.currentTarget.value);
+    setTopicComment(event.currentTarget.value);
     console.log(event.currentTarget.value);
   }
-  async function topics() {
+  async function topicComments() {
     console.log('hello');
     const response = await fetch('/api/announcements', {
       method: 'POST',
-      body: JSON.stringify({ topic }),
+      body: JSON.stringify({ topicComment }),
     });
     const data: any = await response.json();
 
@@ -38,27 +32,17 @@ export default function TopicThreadForm(props: Props) {
 
       return;
     }
-    const cookieStore = cookies();
-    const sessionToken = cookieStore.get('sessionToken');
-    const user = !sessionToken?.value
-      ? undefined
-      : await getUserBySessionToken(sessionToken.value);
+
     console.log(data.user);
-    /*     router.push(`/`);
-     */ // we may have in the future revalidatePath()
+    router.push(`/`);
+    // we may have in the future revalidatePath()
     router.refresh();
   }
-  const cookieStore = cookies();
-  const sessionToken = cookieStore.get('sessionToken');
-
-  const user = !sessionToken?.value
-    ? undefined
-    : await getUserBySessionToken(sessionToken.value);
-return (
-  /*   return (
-   */ // WARNING: in order to use Server Action you need to update the next.js config with serverActions: true,
+  // WARNING: in order to use Server Action you need to update the next.js config with serverActions: true,
   // when using Server Actions we don't need prevent the default of the form
-  /*
+
+/*   return (
+
     <form onSubmit={(event) => event.preventDefault()}>
       <div className="mx-56 flex flex-col  text-blue-600 ">
         <div className="font-inter box-border h-10  flex items-center   w-50 p-4 border-1 px-3 py-4 b bg-[#0d202d] text-white">
@@ -68,11 +52,12 @@ return (
 
       <textarea
         className={style.textArea}
-        value={topic}
+        value={topicComment}
         onChange={handleChange}
       />
-      <button onClick={async () => await topics()}>Post comment</button>
+      <button onClick={async () => await topicComments()}>Post comment</button>
+      {/* Instead of using onClick we use formAction */}
       <br />
     </form>
-  ) */
+  ); */
 }

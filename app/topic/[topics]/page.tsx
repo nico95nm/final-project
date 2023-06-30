@@ -1,41 +1,19 @@
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { notFound } from 'next/navigation';
-import { Editor } from 'react-draft-wysiwyg';
-import { getCookie } from '../../../util/cookies';
-import { parseJson } from '../../../util/json';
-import CommentThreadForm from '../page';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
+import { getValidSessionByToken } from '../../../database/topics';
+import RegisterForm from './TopicForm';
 
-type Props = {
-  params: { threadId: string };
-};
+export default async function RegisterPage() {
+  // if the user is logged in redirect
 
-export type CookieCommentItem = {
-  id: number;
-  topic: string;
-  comment?: string;
-};
+  // 1. Check if the sessionToken cookie exit
+  const sessionTokenCookie = cookies().get('sessionToken');
+  // 2. check if the sessionToken has a valid session
+  const session =
+    sessionTokenCookie &&
+    (await getValidSessionByToken(sessionTokenCookie.value));
 
-export default function CommentThreadPage(props: Props) {
-  const commentThreadsCookie = getCookie('commentThread');
-  const commentThreads = !commentThreadsCookie
-    ? []
-    : parseJson(commentThreadsCookie);
-
-  const commentThread = commentThreads?.find((commentThread) => {
-    return commentThread.id;
-  });
-
-  return (
-    <>
-      <Editor />
-      {/*       {commentThread?.comment} */}
-      {/*       <commentThreads commentId={commentThread.id} />
-       */}{' '}
-    </>
-  );
+  // 3. Either redirect or render the login form
+  if (session) redirect('/');
+  return <RegisterForm />;
 }
-type Animal = {
-  id: number;
-  topic: string;
-  comment: string;
-};

@@ -1,33 +1,33 @@
+import { colors } from '@mui/material';
 import { NextRequest, NextResponse } from 'next/server';
 import { string, z } from 'zod';
 import {
-  createComment,
-  deleteCommentById,
-  getCommentById,
-  getComments,
-  postCommentById,
-  updateCommentById,
-} from '../../../../database/comment';
+  createTopic,
+  deleteTopicById,
+  getTopics,
+  getTopicsById,
+  postTopicById,
+  updateTopicById,
+} from '../../../../database/topics';
 
 type Error = { error: string };
 
-type CommentsResponseBodyPost = { comment: string } | Error;
-type CommentsResponseBodyGet = { comment: Comment } | Error;
-type CommentsResponseBodyDelete = { comment: Comment } | Error;
-type CommentsResponseBodyPut = { comment: Comment } | Error;
+type TopicsResponseBodyPost = { comment: string } | Error;
+type TopicsResponseBodyGet = { comment: Comment } | Error;
+type TopicsResponseBodyDelete = { comment: Comment } | Error;
+type TopicsResponseBodyPut = { comment: Comment } | Error;
 
-const commentSchema = z.object({
-  comment: z.string(),
-  topicComment: z.string(),
+const topicCommentSchema = z.object({
+  topicsComment: z.string(),
 });
 
 export async function POST(
   request: NextRequest,
-): Promise<NextResponse<CommentsResponseBodyPost>> {
+): Promise<NextResponse<TopicsResponseBodyPost>> {
   const body = await request.json();
 
   // zod please verify the body matches my schema
-  const result = commentSchema.safeParse(body);
+  const result = topicCommentSchema.safeParse(body);
 
   if (!result.success) {
     // zod send you details about the error
@@ -40,15 +40,14 @@ export async function POST(
     );
   }
   // query the database to get all the animals
-  const comment = await createComment('hello', result.data.comment);
-  console.log('hello', comment);
-  if (!comment) {
-    console.log(comment);
+  const threadComment = await createTopic('hello', result.data.topicsComment);
+  console.log('Testing', threadComment);
+  if (!threadComment) {
     // zod send you details about the error
     // console.log(result.error);
     return NextResponse.json(
       {
-        error: 'Error creating a new comment',
+        error: 'Error creating the new animal',
       },
       { status: 500 },
     );
@@ -68,16 +67,16 @@ export async function POST(
     );
   } */
 
-  return NextResponse.json({ comment: comment.comment });
+  return NextResponse.json({ comment: threadComment.tittle });
 }
 
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Record<string, string | string[]> },
-): Promise<NextResponse<CommentsResponseBodyDelete>> {
-  const commentId = Number(params.animalId);
+): Promise<NextResponse<TopicsResponseBodyDelete>> {
+  const topicId = Number(params.topicId);
 
-  if (!commentId) {
+  if (!topicId) {
     return NextResponse.json(
       {
         error: 'Animal id is not valid',
@@ -86,38 +85,38 @@ export async function DELETE(
     );
   }
   // query the database to get all the animals
-  const comment = await deleteCommentById(commentId);
+  const topic = await deleteTopicById(topicId);
 
-  if (!comment) {
+  if (!topic) {
     return NextResponse.json(
       {
-        error: 'Animal Not Found',
+        error: 'Not Found',
       },
       { status: 404 },
     );
   }
 
-  return NextResponse.json({ comment: comment });
+  return NextResponse.json({ topic: topic });
 }
 
 export async function PUT(
   request: NextRequest,
   { params }: { params: Record<string, string | string[]> },
-): Promise<NextResponse<CommentsResponseBodyPut>> {
-  const commentId = Number(params.commentId);
+): Promise<NextResponse<TopicsResponseBodyPut>> {
+  const topicId = Number(params.commentId);
   const body = await request.json();
 
-  if (!commentId) {
+  if (!topicId) {
     return NextResponse.json(
       {
-        error: 'Animal id is not valid',
+        error: 'not valid',
       },
       { status: 400 },
     );
   }
 
   // zod please verify the body matches my schema
-  const result = commentSchema.safeParse(body);
+  const result = topicCommentSchema.safeParse(body);
 
   if (!result.success) {
     // zod send you details about the error
@@ -130,13 +129,13 @@ export async function PUT(
     );
   }
   // query the database to update the animal
-  const comment = await updateCommentById(
-    commentId,
-    result.data.topic,
-    result.data.comment,
+  const topic = await updateTopicById(
+    topicId,
+    result.data.title,
+    result.data.user_id,
   );
 
-  if (!comment) {
+  if (!topic) {
     return NextResponse.json(
       {
         error: 'Animal Not Found',
@@ -146,6 +145,6 @@ export async function PUT(
   }
 
   return NextResponse.json({
-    comment: comment,
+    topic: topic,
   });
 }

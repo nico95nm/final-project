@@ -5,15 +5,15 @@ import { ChangeEvent, useState } from 'react';
 import { Comments } from '../../database/comment';
 import { createOrUpdateComment } from './[topics]/actions';
 import style from './page.module.scss';
-import CommentThreadForm from './TopicForm';
+import TopicThreadForm from './TopicForm';
 
 // {id: number, comment: string}[]]
 
 type Props = {
-  commentId: number;
+  topicId: number;
 };
 
-export default function CommentPage(props: Props) {
+export default function TopicPage(props: Props) {
   /*   const [comment, setComment] = useState('');
   const [error, setError] = useState('');
   // If you need to have a type parameter for the useState (either
@@ -47,7 +47,7 @@ export default function CommentPage(props: Props) {
     // WARNING: in order to use Server Action you need to update the next.js config with serverActions: true,
     // when using Server Actions we don't need prevent the default of the form
 
-    <CommentThreadForm commentId={1} />
+    <TopicThreadForm topicId={1} />
 
     /*     <form>
       <div className="mx-56 flex flex-col  text-blue-600 ">

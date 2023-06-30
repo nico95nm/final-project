@@ -138,7 +138,7 @@ export const getComments = cache(async (id: number) => {
 });
 
 // Join query for getting a single animal with related foods using json_agg
-export const getCommentById = cache(async (id: number) => {
+/* export const getCommentById = cache(async (id: number) => {
   const [comment] = await sql<AnimalWithFoodsInJsonAgg[]>`
 SELECT
   comments.id AS comment_id,
@@ -165,3 +165,4 @@ GROUP BY
 
   return comment;
 });
+ */

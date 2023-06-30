@@ -60,7 +60,7 @@ Once you have this tasks come back to a mentor/teacher for feedback
 1. Create Migration for Topics [-]
 2. Create migration for TopicComments[-]
    3.Confrn that it exist in database[-]
-   4.Create TopicForm in front end simmilar as AnnouncementForm[]
+   4.Create TopicForm in front end simmilar as AnnouncementForm[-]
    if its go to topic page(ask)[]
 3. Instide of TopicForm I need title of the topic and need user.id[]
    How do I get user.id? []

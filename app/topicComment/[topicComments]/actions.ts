@@ -4,9 +4,9 @@ import { cookies } from 'next/headers';
 import { getCookie } from '../../../util/cookies';
 import { parseJson } from '../../../util/json';
 
-export async function createOrUpdateTopic(
-  threadId: number,
-  tittle: string,
+export async function createOrUpdateTopicComment(
+  threadCommentId: number,
+  topic_id: number,
   user_id: number,
 ) {
   // 1. get the current cookie
@@ -24,7 +24,7 @@ export async function createOrUpdateTopic(
 
   // We get the object for the fruit in cookies or undefined
   const threadToUpdate = threadComments?.find((threadComment) => {
-    return threadComment.id === threadId;
+    return threadComment.id === threadCommentId;
   });
 
   // case B: the cookie is defined but have the fruit in the action
@@ -32,7 +32,7 @@ export async function createOrUpdateTopic(
   // [{id:1, comment:"abc"}]
   if (threadToUpdate) {
     // we need to update the fruitComment
-    threadToUpdate.comment = tittle;
+    threadToUpdate.comment = topic_id;
   } else {
     // case C: the cookie is defined but doesn't have the fruit in the action
     // if we are in fruit 1
@@ -42,8 +42,8 @@ export async function createOrUpdateTopic(
     // Only use it if you know that you want the error!
     threadComments!.push({
       // we need insert the fruitCommnet
-      id: threadId,
-      tittle,
+      threadcommentId: threadCommentId,
+      topic_id,
       user_id: '',
     });
   }

@@ -9,19 +9,17 @@ type Props = {
   params: { threadId: string };
 };
 
-export type CookieCommentItem = {
+export type CookieThreadtItem = {
   id: number;
-  topic: string;
-  comment?: string;
+  comment: string;
+  topic?: string;
 };
 
-export default function CommentThreadPage(props: Props) {
-  const commentThreadsCookie = getCookie('commentThread');
-  const commentThreads = !commentThreadsCookie
-    ? []
-    : parseJson(commentThreadsCookie);
+export default function TopicThreadPage(props: Props) {
+  const topicThreadsCookie = getCookie('topicThread');
+  const topicThreads = !topicThreadsCookie ? [] : parseJson(topicThreadsCookie);
 
-  const commentThread = commentThreads?.find((commentThread) => {
+  const topicThread = topicThreads?.find((commentThread) => {
     return commentThread.id;
   });
 
@@ -33,3 +31,8 @@ export default function CommentThreadPage(props: Props) {
     </>
   );
 }
+type Thead = {
+  id: number;
+  topic: string;
+  comment: string;
+};
