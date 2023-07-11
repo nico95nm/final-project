@@ -1,12 +1,9 @@
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import {
-  createComment,
-  getCommentsWithLimitAndOffsetBySessionToken,
-} from '../../../../database/comment';
+import { createComment, getAllComments } from '../../../../database/comment';
 import { getValidSessionByToken } from '../../../../database/sessions';
-import { createOrUpdateComment } from '../../../announcements/[announcements]/actions';
+import { Comment } from '../../../../migrations/1686916408-createTableComments';
 
 export type Comment = {
   id: number;
@@ -22,7 +19,9 @@ type CreatesResponseBodyGet = { comments: Comment[] } | Error;
 type CommentsResponseBodyPost = { comment: Comment } | Error;
 
 const commentSchema = z.object({
-  topic: z.string(),
+  userId: z.number(),
+  postId: z.number(),
+  topic: z.number(),
   comment: z.string(),
 });
 
@@ -50,10 +49,10 @@ export async function GET(
     );
   }
 
-  const limit = Number(searchParams.get('limit'));
+  /*   const limit = Number(searchParams.get('limit'));
   const offset = Number(searchParams.get('offset'));
-
-  if (!limit || !offset) {
+ */
+  /* if (!limit || !offset) {
     return NextResponse.json(
       {
         error: 'Limit and Offset need to be passed as params',
@@ -61,13 +60,14 @@ export async function GET(
       { status: 400 },
     );
   }
-
+ */
   // query the database to get all the animals only if a valid session token is passed
-  const comments = await getCommentsWithLimitAndOffsetBySessionToken(
+  /*   const comments = await getCommentsWithLimitAndOffsetBySessionToken(
     limit,
     offset,
     sessionTokenCookie.value,
-  );
+  ); */
+  const comments = await getAllComments();
 
   return NextResponse.json({ comments: comments });
 }
@@ -79,6 +79,7 @@ export async function POST(
 
   // zod please verify the body matches my schema
   const result = commentSchema.safeParse(body);
+  console.log(body);
 
   if (!result.success) {
     // zod send you details about the error
@@ -91,7 +92,8 @@ export async function POST(
     );
   }
   // query the database to get all the animals
-  const comment = await createOrUpdateComment(
+  const comment = await createComment(
+    result.data.userId,
     result.data.topic,
     result.data.comment,
   );

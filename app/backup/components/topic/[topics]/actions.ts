@@ -1,10 +1,14 @@
 'use server';
 
 import { cookies } from 'next/headers';
-import { getCookie } from '../../../util/cookies';
-import { parseJson } from '../../../util/json';
+import { getCookie } from '../../../../util/cookies';
+import { parseJson } from '../../../../util/json';
 
-export async function createOrUpdateComment(threadId: number, comment: string) {
+export async function createOrUpdateTopic(
+  threadId: number,
+  tittle: string,
+  user_id: number,
+) {
   // 1. get the current cookie
   // This get the cookies from the Request Headers
   const threadCommentsCookie = getCookie('threadComments');
@@ -28,7 +32,7 @@ export async function createOrUpdateComment(threadId: number, comment: string) {
   // [{id:1, comment:"abc"}]
   if (threadToUpdate) {
     // we need to update the fruitComment
-    threadToUpdate.comment = comment;
+    threadToUpdate.comment = tittle;
   } else {
     // case C: the cookie is defined but doesn't have the fruit in the action
     // if we are in fruit 1
@@ -39,8 +43,8 @@ export async function createOrUpdateComment(threadId: number, comment: string) {
     threadComments!.push({
       // we need insert the fruitCommnet
       id: threadId,
-      comment,
-      topic: '',
+      tittle,
+      user_id: '',
     });
   }
 

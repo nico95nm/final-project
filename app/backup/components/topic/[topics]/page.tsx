@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { getValidSessionByToken } from '../../../database/topics';
+import { getValidSessionByToken } from '../../../../database/topics';
 import RegisterForm from './TopicForm';
 
 export default async function RegisterPage() {

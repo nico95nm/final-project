@@ -74,7 +74,7 @@ export async function POST(
   // We are sure the user is authenticated
 
   // 5. Create a token
-  const token = crypto.randomBytes(100).toString('base64');
+  const token = crypto.randomBytes(50).toString('base64');
   // 6. Create the session record
 
   const session = await createSession(token, newUser.id);

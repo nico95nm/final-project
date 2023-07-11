@@ -12,18 +12,18 @@ export default function TopicCommentsThreadForm(props: Props) {
   const [error, setError] = useState('');
   // If you need to have a type parameter for the useState (either
   // undefined or a string)
-  // const [comment, setComment] = useState<undefined | string>();
+  const [comment, setComment] = useState<string | undefined>('');
   const router = useRouter();
 
   function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
     setTopicComment(event.currentTarget.value);
-    console.log(event.currentTarget.value);
   }
   async function topicComments() {
-    console.log('hello');
-    const response = await fetch('/api/announcements', {
+    console.log(topicComment);
+    console.log(comment, typeof comment);
+    const response = await fetch('/api/announecemnts', {
       method: 'POST',
-      body: JSON.stringify({ topicComment }),
+      body: JSON.stringify({ topicComment: topicComment }),
     });
     const data: any = await response.json();
 
@@ -41,23 +41,17 @@ export default function TopicCommentsThreadForm(props: Props) {
   // WARNING: in order to use Server Action you need to update the next.js config with serverActions: true,
   // when using Server Actions we don't need prevent the default of the form
 
-/*   return (
-
-    <form onSubmit={(event) => event.preventDefault()}>
-      <div className="mx-56 flex flex-col  text-blue-600 ">
-        <div className="font-inter box-border h-10  flex items-center   w-50 p-4 border-1 px-3 py-4 b bg-[#0d202d] text-white">
-          Announcements
-        </div>
-      </div>
-
-      <textarea
+  return (
+/*     <form onSubmit={(event) => event.preventDefault()}>
+ */      {/*       <textarea
+        placeholder="topicComments"
         className={style.textArea}
         value={topicComment}
         onChange={handleChange}
-      />
-      <button onClick={async () => await topicComments()}>Post comment</button>
+      /> */}
+{/*       <button onClick={async () => await topicComments()}>Post comment</button>
       {/* Instead of using onClick we use formAction */}
-      <br />
+      <br /> */}
     </form>
-  ); */
+  );
 }

@@ -1,21 +1,55 @@
+import { colors } from '@mui/material';
+import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { string, z } from 'zod';
+import { getValidSessionByToken } from '../../../../database/sessions';
 import {
   createTopic,
   deleteTopicById,
+  getTopics,
+  getTopicsById,
+  postTopicById,
   updateTopicById,
 } from '../../../../database/topics';
+import { Topic } from '../../../../migrations/1686916410-createTopics';
 
 type Error = { error: string };
 
-type TopicsResponseBodyPost = { comment: string } | Error;
-type TopicsResponseBodyGet = { comment: Comment } | Error;
-type TopicsResponseBodyDelete = { comment: Comment } | Error;
-type TopicsResponseBodyPut = { comment: Comment } | Error;
+type TopicsResponseBodyPost = { topicComments: Topic } | Error;
+type TopicsResponseBodyGet = { topicComments: Topic[] } | Error;
+/* type TopicsResponseBodyDelete = { topicComments: Comment } | Error;
+type TopicsResponseBodyPut = { comment: Comment } | Error; */
 
-const commentSchema = z.object({
-  comment: z.string(),
+const topicCommentSchema = z.object({
+  topicsComment: z.string(),
 });
+
+export async function GET(
+  request: NextRequest,
+): Promise<NextResponse<TopicsResponseBodyGet>> {
+  const { searchParams } = new URL(request.url);
+
+  // 1. get the token from the cookie
+  const sessionTokenCookie = cookies().get('sessionToken');
+
+  // 2. check if the token has a valid session
+  const session =
+    sessionTokenCookie &&
+    (await getValidSessionByToken(sessionTokenCookie.value));
+
+  console.log('This comes from the API', session);
+
+  if (!session) {
+    return NextResponse.json(
+      {
+        error: 'session token is not valid',
+      },
+      { status: 401 },
+    );
+  }
+
+
+
 
 export async function POST(
   request: NextRequest,
@@ -23,12 +57,12 @@ export async function POST(
   const body = await request.json();
 
   // zod please verify the body matches my schema
-  const result = commentSchema.safeParse(body);
+  const result = topicCommentSchema.safeParse(body);
 
   if (!result.success) {
     // zod send you details about the error
-    // console.log(result.error);
-    return NextResponse.json(
+    /*     console.log(result.error);
+     */ return NextResponse.json(
       {
         error: 'The data is incomplete',
       },
@@ -36,9 +70,9 @@ export async function POST(
     );
   }
   // query the database to get all the animals
-  const thread = await createTopic('world', result.data.comment);
-  console.log('Testing', thread);
-  if (!thread) {
+  const threadComment = await createTopic('hello', result.data.topicsComment);
+  console.log('Testing', threadComment);
+  if (!threadComment) {
     // zod send you details about the error
     // console.log(result.error);
     return NextResponse.json(
@@ -63,10 +97,10 @@ export async function POST(
     );
   } */
 
-  return NextResponse.json({ topic: thread.topic });
+  return NextResponse.json({ comment: threadComment });
 }
 
-export async function DELETE(
+/* export async function DELETE(
   request: NextRequest,
   { params }: { params: Record<string, string | string[]> },
 ): Promise<NextResponse<TopicsResponseBodyDelete>> {
@@ -86,33 +120,33 @@ export async function DELETE(
   if (!topic) {
     return NextResponse.json(
       {
-        error: 'Animal Not Found',
+        error: 'Not Found',
       },
       { status: 404 },
     );
   }
 
   return NextResponse.json({ topic: topic });
-}
+} */
 
-export async function PUT(
+/* export async function PUT(
   request: NextRequest,
   { params }: { params: Record<string, string | string[]> },
 ): Promise<NextResponse<TopicsResponseBodyPut>> {
-  const topicId = Number(params.topicId);
+  const topicId = Number(params.commentId);
   const body = await request.json();
 
   if (!topicId) {
     return NextResponse.json(
       {
-        error: 'Animal id is not valid',
+        error: 'not valid',
       },
       { status: 400 },
     );
   }
-
+ */
   // zod please verify the body matches my schema
-  const result = commentSchema.safeParse(body);
+  const result = topicCommentSchema.safeParse(topicComments);
 
   if (!result.success) {
     // zod send you details about the error
@@ -125,10 +159,7 @@ export async function PUT(
     );
   }
   // query the database to update the animal
-  const topic = await updateCommentById(
-    topicId,
-    result.data.topic_id,
-    result.data.comment_id,
+  const topic = await createTopic( result.data.topicsComment
   );
 
   if (!topic) {
@@ -139,8 +170,6 @@ export async function PUT(
       { status: 404 },
     );
   }
-
-  return NextResponse.json({
-    topic: topic,
+  return NextResponse.json({topicComments:
   });
 }

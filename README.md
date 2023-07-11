@@ -63,14 +63,14 @@ Once you have this tasks come back to a mentor/teacher for feedback
    4.Create TopicForm in front end simmilar as AnnouncementForm[-]
    if its go to topic page(ask)[]
 3. Instide of TopicForm I need title of the topic and need user.id[]
-   How do I get user.id? []
-   " const cookieStore = cookies();
-   const sessionToken = cookieStore.get('sessionToken');
 
-const user = !sessionToken?.value
-? undefined
-: await getUserBySessionToken(sessionToken.value);
-"
+   How do I get user.id? []
+   const cookieStore = cookies();
+   const sessionToken = cookieStore.get('sessionToken');
+   const user = !sessionToken?.value
+   ? undefined
+   : await getUserBySessionToken(sessionToken.value);
+
 6.Create topic API endpoint(rout) []
 7.create the topic []
 8.database querry topic (same CreateUser) []

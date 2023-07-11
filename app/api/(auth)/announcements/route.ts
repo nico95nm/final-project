@@ -1,37 +1,59 @@
+import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
-import { string, z } from 'zod';
-import {
-  createComment,
-  deleteCommentById,
-  getCommentById,
-  getComments,
-  postCommentById,
-  updateCommentById,
-} from '../../../../database/comment';
+import { z } from 'zod';
+import { createComment, getAllComments } from '../../../../database/comment';
+import { getUserBySessionToken } from '../../../../database/users';
+import { Comment } from '../../../../migrations/1686916408-createTableComments';
 
-type Error = { error: string };
+export type Error = {
+  error: string;
+};
 
-type CommentsResponseBodyPost = { comment: string } | Error;
-type CommentsResponseBodyGet = { comment: Comment } | Error;
-type CommentsResponseBodyDelete = { comment: Comment } | Error;
-type CommentsResponseBodyPut = { comment: Comment } | Error;
+type CommentsResponseBodyGet = { announcements: Comment[] } | Error;
+type CommentsResponseBodyPost = { announcement: Announcement } | Error;
+/* type CommentsResponseBodyDelete = { comment: Comment } | Error;
+type CommentsResponseBodyPut = { comment: Comment } | Error; */
 
 const commentSchema = z.object({
+  userId: z.number(),
+  postId: z.number(),
+  topic: z.string(),
   comment: z.string(),
-  topicComment: z.string(),
 });
+
+export async function GET(
+  request: NextRequest,
+): Promise<NextResponse<CommentsResponseBodyGet>> {
+  return NextResponse.json(
+    {
+      error: 'Session token is not valid',
+    },
+    { status: 401 },
+  );
+}
 
 export async function POST(
   request: NextRequest,
 ): Promise<NextResponse<CommentsResponseBodyPost>> {
+  const { searchParams } = new URL(request.url);
+  const sessionTokenCookie = cookies().get('sessionToken');
+  const userSession =
+    sessionTokenCookie &&
+    (await getUserBySessionToken(sessionTokenCookie.value));
+  console.log('This comes from API', userSession);
+  if (!userSession) {
+    return NextResponse.json(
+      {
+        error: 'Session token is not valid',
+      },
+      { status: 401 },
+    );
+  }
   const body = await request.json();
-
-  // zod please verify the body matches my schema
+  console.log('body1', body);
   const result = commentSchema.safeParse(body);
-
   if (!result.success) {
-    // zod send you details about the error
-    // console.log(result.error);
+    console.log(result.error);
     return NextResponse.json(
       {
         error: 'The data is incomplete',
@@ -39,48 +61,96 @@ export async function POST(
       { status: 400 },
     );
   }
-  // query the database to get all the animals
-  const comment = await createComment('hello', result.data.comment);
-  console.log('hello', comment);
+  const newComment = await createComment(
+    result.data.userId,
+    result.data.topic,
+    result.data.comment,
+  );
+  if (!newComment) {
+    return NextResponse.json(
+      {
+        error: 'Error creating the new post',
+      },
+      { status: 500 },
+    );
+  }
+  return NextResponse.json({ announcement: newComment });
+}
+/*
+function getAllComment() {
+  throw new Error('Function not implemented.');
+} */
+/*   const commentId = Number(params.commentId);
+
+  if (!commentId) {
+    return NextResponse.json(
+      {
+        error: 'Animal id is not valid',
+      },
+      { status: 400 },
+    );
+  } */
+// query the database to get all the animals
+/*   const comment = await createComment('hello1', result.data.comment);
+  console.log('123', comment);
   if (!comment) {
     console.log(comment);
     // zod send you details about the error
-    // console.log(result.error);
+    console.log(result.error);
     return NextResponse.json(
       {
         error: 'Error creating a new comment',
       },
       { status: 500 },
     );
-  }
-  /* rename animal to comment  */
-  /* topic.id */
+  } */
+/*  rename animal to comment */
+/*  comment.id; */
 
-  // query the database to get all the animals
-  /*  const comment = await getCommentById(animal.id);
+/*
+export async function POST(
+  request: NextRequest,
+): Promise<NextResponse<CommentsResponseBodyPost>> {
+  const body = await request.json();
+ */
+// zod please verify the body matches my schema
+/*  const result = commentSchema.safeParse(body);
 
-  if (!comment) {
-    return NextResponse.json(
+  if (!result.success) { */
+// zod send you details about the error
+/*  return NextResponse.json(
       {
-        error: 'Animal Not Found',
+        error: 'The data is incomplete',
       },
-      { status: 404 },
+      { status: 400 },
     );
   } */
 
-  return NextResponse.json({ comment: comment.comment });
-}
+// query the database to get all the animals
+/*     const comments = await getCommentsById(comment.id);
 
-export async function DELETE(
+    if (!comments) {
+      return NextResponse.json(
+        {
+          error: 'Not Found',
+        },
+        { status: 404 },
+      );
+    }
+
+    return NextResponse.json({ comment: comment.comment });
+  }
+ */
+/* export async function DELETE(
   request: NextRequest,
   { params }: { params: Record<string, string | string[]> },
 ): Promise<NextResponse<CommentsResponseBodyDelete>> {
-  const commentId = Number(params.animalId);
+  const commentId = Number(params.commentId);
 
   if (!commentId) {
     return NextResponse.json(
       {
-        error: 'Animal id is not valid',
+        error: 'Id is not valid',
       },
       { status: 400 },
     );
@@ -91,7 +161,7 @@ export async function DELETE(
   if (!comment) {
     return NextResponse.json(
       {
-        error: 'Animal Not Found',
+        error: 'Not Found',
       },
       { status: 404 },
     );
@@ -99,18 +169,18 @@ export async function DELETE(
 
   return NextResponse.json({ comment: comment });
 }
-
-export async function PUT(
+ */
+/* export async function PUT(
   request: NextRequest,
   { params }: { params: Record<string, string | string[]> },
 ): Promise<NextResponse<CommentsResponseBodyPut>> {
-  const commentId = Number(params.commentId);
+  const comments = Number(params.commentId);
   const body = await request.json();
 
-  if (!commentId) {
+  if (!comments) {
     return NextResponse.json(
       {
-        error: 'Animal id is not valid',
+        error: 'Id is not valid',
       },
       { status: 400 },
     );
@@ -131,7 +201,7 @@ export async function PUT(
   }
   // query the database to update the animal
   const comment = await updateCommentById(
-    commentId,
+    comments,
     result.data.topic,
     result.data.comment,
   );
@@ -139,13 +209,13 @@ export async function PUT(
   if (!comment) {
     return NextResponse.json(
       {
-        error: 'Animal Not Found',
+        error: 'Not Found',
       },
       { status: 404 },
     );
   }
-
-  return NextResponse.json({
-    comment: comment,
+ */
+/*   return NextResponse.json({
+    comment: Comment,
   });
-}
+} */

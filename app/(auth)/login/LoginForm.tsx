@@ -20,8 +20,9 @@ export default function LoginForm(props: Props) {
       method: 'POST',
       body: JSON.stringify({ username, password }),
     });
-
+    console.log('test responce loginform tsx', response);
     const data: LoginResponseBodyPost = await response.json();
+    console.log('test data loginform tsx', data);
 
     if ('error' in data) {
       setError(data.error);

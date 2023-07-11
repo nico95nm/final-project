@@ -1,4 +1,4 @@
-/* import { Sql } from 'postgres';
+import { Sql } from 'postgres';
 
 export type Topic = {
   id: number;
@@ -23,4 +23,3 @@ export async function down(sql: Sql) {
   DROP TABLE topic_comments
   `;
 }
- */

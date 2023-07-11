@@ -3,22 +3,23 @@ import { z } from 'zod';
 import {
   createComment,
   deleteCommentById,
-  getCommentById,
   getComments,
+  getCommentsById,
   postCommentById,
   updateCommentById,
-} from '../../../../../database/comment';
-import { Comment, Error } from '../route';
+} from '../../../../database/comment';
 
-type CommentsResponseBodyPost = { comment: Comment } | Error;
+type Error = { error: string };
+
+export type CommentsResponseBodyPost = { comment: string } | Error;
 type CommentsResponseBodyGet = { comment: Comment } | Error;
-type CommentsResponseBodyDelete = { comment: Comment } | Error;
-type CommentsResponseBodyPut = { comment: Comment } | Error;
+/* type CommentsResponseBodyDelete = { comment: Comment } | Error;
+type CommentsResponseBodyPut = { comment: Comment } | Error; */
 
 const commentSchema = z.object({
-  topic: z.string(),
   comment: z.string(),
-});
+  topicComment: z.string(),
+ );
 
 export async function POST(
   request: NextRequest,
@@ -30,7 +31,6 @@ export async function POST(
 
   if (!result.success) {
     // zod send you details about the error
-    // console.log(result.error);
     return NextResponse.json(
       {
         error: 'The data is incomplete',
@@ -38,44 +38,62 @@ export async function POST(
       { status: 400 },
     );
   }
-  // query the database to get all the animals
-  const comment = await createComment(result.data.topic, result.data.comment);
+  export async function GET(
+    request: NextRequest,
+    { params }: { params: Record<string, string | string[]> },
+  ): Promise<NextResponse<CommentsResponseBodyGet>> {
+    const commentId = Number(params.commentId);
 
-  if (!comment) {
-    // zod send you details about the error
-    // console.log(result.error);
-    return NextResponse.json(
-      {
-        error: 'Error creating the new animal',
-      },
-      { status: 500 },
-    );
+    if (!commentId) {
+      return NextResponse.json(
+        {
+          error: 'Animal id is not valid',
+        },
+        { status: 400 },
+      );
+    }
+    // query the database to get all the animals
+    const comment = await createComment('hello1', result.data.comment);
+    console.log('123', comment);
+    if (!comment) {
+      console.log(comment);
+      // zod send you details about the error
+      console.log(result.error);
+      return NextResponse.json(
+        {
+          error: 'Error creating a new comment',
+        },
+        { status: 500 },
+      );
+    }
+    /* rename animal to comment  */
+    Topic.id;
+
+    // query the database to get all the animals
+    const comments = await getCommentsById(comment.id);
+
+    if (!comments) {
+      return NextResponse.json(
+        {
+          error: 'Not Found',
+        },
+        { status: 404 },
+      );
+    }
+
+    return NextResponse.json({ comment: comment.comment });
   }
-  // query the database to get all the animals
-  const comment = await getCommentById(commentId);
 
-  if (!comment) {
-    return NextResponse.json(
-      {
-        error: 'Animal Not Found',
-      },
-      { status: 404 },
-    );
-  }
-
-  return NextResponse.json({ comment: comment });
-}
-
-export async function DELETE(
+  /* export async function DELETE(
   request: NextRequest,
   { params }: { params: Record<string, string | string[]> },
 ): Promise<NextResponse<CommentsResponseBodyDelete>> {
-  const commentId = Number(params.animalId);
+  const commentId = Number(params.commentId);
 
   if (!commentId) {
     return NextResponse.json(
       {
-        error: 'Animal id is not valid',
+        error: 'Id is not valid',
       },
       { status: 400 },
     );
@@ -86,7 +104,7 @@ export async function DELETE(
   if (!comment) {
     return NextResponse.json(
       {
-        error: 'Animal Not Found',
+        error: 'Not Found',
       },
       { status: 404 },
     );
@@ -94,18 +112,18 @@ export async function DELETE(
 
   return NextResponse.json({ comment: comment });
 }
-
-export async function PUT(
+ */
+  /* export async function PUT(
   request: NextRequest,
   { params }: { params: Record<string, string | string[]> },
 ): Promise<NextResponse<CommentsResponseBodyPut>> {
-  const commentId = Number(params.commentId);
+  const comments = Number(params.commentId);
   const body = await request.json();
 
-  if (!commentId) {
+  if (!comments) {
     return NextResponse.json(
       {
-        error: 'Animal id is not valid',
+        error: 'Id is not valid',
       },
       { status: 400 },
     );
@@ -126,7 +144,7 @@ export async function PUT(
   }
   // query the database to update the animal
   const comment = await updateCommentById(
-    commentId,
+    comments,
     result.data.topic,
     result.data.comment,
   );
@@ -134,13 +152,13 @@ export async function PUT(
   if (!comment) {
     return NextResponse.json(
       {
-        error: 'Animal Not Found',
+        error: 'Not Found',
       },
       { status: 404 },
     );
   }
-
+ */
   return NextResponse.json({
-    comment: comment,
+    comment: Comment,
   });
 }

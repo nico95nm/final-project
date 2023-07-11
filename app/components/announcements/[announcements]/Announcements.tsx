@@ -20,27 +20,30 @@ export default function threadCommentForm(props: Props) {
   function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
     setComment(event.currentTarget.value);
   }
-
+  //
   return (
     // WARNING: in order to use Server Action you need to update the next.js config with serverActions: true,
     // when using Server Actions we don't need prevent the default of the form
-    <form>
+    /* <form>
       <textarea
-        className={style.textArea}
+                 className={style.textArea}
         value={comment}
         onChange={handleChange}
       />
-      {/* Instead of using onClick we use formAction */}
-      <br />
-      <button
-        className={style.button}
-        formAction={async () => {
+      */
+    {
+      /* Instead of using onClick we use formAction */
+    }
+    /*       <button
+                className={style.button}
+         formAction={async () => {
           router.refresh();
           await createOrUpdateComment(props.threadId, comment);
         }}
       >
         Update Comment
       </button>
-    </form>
+    </form> */
   );
 }
+//

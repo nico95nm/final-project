@@ -28,10 +28,8 @@ export async function POST(
 ): Promise<NextResponse<LoginResponseBodyPost>> {
   const body = await request.json();
 
-  // 1. get the credentials from the body
   const result = userSchema.safeParse(body);
 
-  // 2. verify the user data and check that the name is not taken
   if (!result.success) {
     // zod send you details about the error
     // console.log(result.error);
@@ -77,7 +75,7 @@ export async function POST(
   // We are sure the user is authenticated
 
   // 4. Create a token
-  const token = crypto.randomBytes(100).toString('base64');
+  const token = crypto.randomBytes(50).toString('base64');
   // 5. Create the session record
 
   const session = await createSession(token, userWithPasswordHash.id);

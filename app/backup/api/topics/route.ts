@@ -1,24 +1,20 @@
-import { colors } from '@mui/material';
 import { NextRequest, NextResponse } from 'next/server';
 import { string, z } from 'zod';
+import { updateCommentById } from '../../../../database/comment';
 import {
   createTopic,
   deleteTopicById,
-  getTopics,
-  getTopicsById,
-  postTopicById,
   updateTopicById,
 } from '../../../../database/topics';
 
 type Error = { error: string };
-
-type TopicsResponseBodyPost = { comment: string } | Error;
+export type TopicResponseBodyPost = { comment: string } | Error;
 type TopicsResponseBodyGet = { comment: Comment } | Error;
 type TopicsResponseBodyDelete = { comment: Comment } | Error;
 type TopicsResponseBodyPut = { comment: Comment } | Error;
 
-const topicCommentSchema = z.object({
-  topicsComment: z.string(),
+const topicSchema = z.object({
+  topic: z.string(),
 });
 
 export async function POST(
@@ -27,7 +23,7 @@ export async function POST(
   const body = await request.json();
 
   // zod please verify the body matches my schema
-  const result = topicCommentSchema.safeParse(body);
+  const result = topicSchema.safeParse(body);
 
   if (!result.success) {
     // zod send you details about the error
@@ -40,9 +36,9 @@ export async function POST(
     );
   }
   // query the database to get all the animals
-  const threadComment = await createTopic('hello', result.data.topicsComment);
-  console.log('Testing', threadComment);
-  if (!threadComment) {
+  const thread = await createTopic('world', result.data.topic);
+  console.log('Testing', thread);
+  if (!thread) {
     // zod send you details about the error
     // console.log(result.error);
     return NextResponse.json(
@@ -67,7 +63,7 @@ export async function POST(
     );
   } */
 
-  return NextResponse.json({ comment: threadComment.tittle });
+  return NextResponse.json({ topic: thread.topic });
 }
 
 export async function DELETE(
@@ -79,7 +75,7 @@ export async function DELETE(
   if (!topicId) {
     return NextResponse.json(
       {
-        error: 'Animal id is not valid',
+        error: 'user id is not valid',
       },
       { status: 400 },
     );
@@ -90,7 +86,7 @@ export async function DELETE(
   if (!topic) {
     return NextResponse.json(
       {
-        error: 'Not Found',
+        error: 'Animal Not Found',
       },
       { status: 404 },
     );
@@ -103,20 +99,20 @@ export async function PUT(
   request: NextRequest,
   { params }: { params: Record<string, string | string[]> },
 ): Promise<NextResponse<TopicsResponseBodyPut>> {
-  const topicId = Number(params.commentId);
+  const topicId = Number(params.topicId);
   const body = await request.json();
 
   if (!topicId) {
     return NextResponse.json(
       {
-        error: 'not valid',
+        error: 'Animal id is not valid',
       },
       { status: 400 },
     );
   }
 
   // zod please verify the body matches my schema
-  const result = topicCommentSchema.safeParse(body);
+  const result = topicSchema.safeParse(body);
 
   if (!result.success) {
     // zod send you details about the error
@@ -129,11 +125,7 @@ export async function PUT(
     );
   }
   // query the database to update the animal
-  const topic = await updateTopicById(
-    topicId,
-    result.data.title,
-    result.data.user_id,
-  );
+  const topic = await updateCommentById(topicId, result.data.topic);
 
   if (!topic) {
     return NextResponse.json(
