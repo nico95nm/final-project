@@ -29,6 +29,7 @@ Please divide your features in 3 priorities
   - only read users
   - user rank
 - email integration for password update and notifications
+  hello
 
 ## Wireframes
 
