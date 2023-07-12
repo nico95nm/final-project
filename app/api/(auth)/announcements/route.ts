@@ -10,7 +10,7 @@ export type Error = {
 };
 
 type CommentsResponseBodyGet = { announcements: Comment[] } | Error;
-type CommentsResponseBodyPost = { announcement: Announcement } | Error;
+type CommentsResponseBodyPost = { announcement: Comment[] } | Error;
 /* type CommentsResponseBodyDelete = { comment: Comment } | Error;
 type CommentsResponseBodyPut = { comment: Comment } | Error; */
 

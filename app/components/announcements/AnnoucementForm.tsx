@@ -22,8 +22,7 @@ export default function CreatePostForm({ usersId, topic, comment }: Props) {
   const [comments, setComments] = useState(comment);
   /*  const [userid, setUserid] = useState(post.id);
    */
-
-  console.log('This comes from the API', userSession);
+  const router = useRouter()
 
   async function createPost() {
     const response = await fetch('/api/announcements', {
