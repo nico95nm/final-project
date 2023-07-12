@@ -1,13 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { createComment, getCommentById } from '../../../../../database/comment';
-import { Comments, Error } from '../route';
+import { createComment } from '../../../../../database/comment';
 
-type CommentsResponseBodyPost =
-  | { userId: number; topic: number; comments: Comments }
-  | Error;
-/*  type CommentsResponseBodyGet = { comment: Comment } | Error;
- */ /* type CommentsResponseBodyDelete = { comment: Comment } | Error; */
+export type Error = {
+  error: string;
+};
+
+type CommentsResponseBodyPost = { comment: Comment } | Error;
+// type CommentsResponseBodyGet = { comment: Comment } | Error;
+/* type CommentsResponseBodyDelete = { comment: Comment } | Error; */
 /* type CommentsResponseBodyPut = { comment: Comment } | Error;
  */
 const commentSchema = z.object({
@@ -34,26 +35,21 @@ export async function POST(
       { status: 400 },
     );
   }
-  // query the database to get all the animals
-  const comment = await createComment(
+  const postComment = await createComment(
     result.data.userId,
     result.data.topic,
     result.data.comment,
   );
 
-  if (!comment) {
-    // zod send you details about the error
-    // console.log(result.error);
+  if (!postComment) {
     return NextResponse.json(
       {
-        error: 'Error creating the new animal',
+        error: 'Error creating the new post',
       },
       { status: 500 },
     );
   }
-  // query the database to get all the animals
-
-  return NextResponse.json({ comments: comment });
+  return NextResponse.json({ comment: [postComment] });
 }
 
 /* export async function DELETE(
