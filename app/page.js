@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <main>
       <div>
-        <div className="mx-56 flex flex-col  text-white">
+        <div className="mx-56 flex flex-col  text-pink-800">
           <ul>
             <li>
               <div className={`${raleway.className}  py-8`}>
