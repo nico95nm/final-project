@@ -2,8 +2,8 @@ import { Sql } from 'postgres';
 import { ReactNode } from 'react';
 
 export type Comment = {
-  username: ReactNode;
-  usersId: ReactNode;
+  username: string;
+  usersId: string;
   id: number;
   topic: string;
   comment: string;

@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { createComment, getCommentById } from '../../../../../database/comment';
-import { Comment, Error } from '../route';
+import { Comments, Error } from '../route';
 
-type CommentsResponseBodyPost = { comment: Comment } | Error;
+type CommentsResponseBodyPost = { comments: Comments } | Error;
 type CommentsResponseBodyGet = { comment: Comment } | Error;
 type CommentsResponseBodyDelete = { comment: Comment } | Error;
 /* type CommentsResponseBodyPut = { comment: Comment } | Error;
@@ -51,7 +51,7 @@ export async function POST(
   }
   // query the database to get all the animals
 
-  return NextResponse.json({ comment: comment });
+  return NextResponse.json({ comments: comment });
 }
 
 /* export async function DELETE(

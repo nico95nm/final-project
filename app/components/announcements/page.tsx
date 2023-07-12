@@ -37,7 +37,7 @@ export default async function ActivityPage() {
   console.log(comments);
   return (
     <main>
-      <div className="flex gap-4">
+      <div className="flex gap-4 text-white">
         <AvatarPage username={user.username} />
         <CreateCommentForm
           topic={0}
@@ -48,13 +48,13 @@ export default async function ActivityPage() {
       </div>
       {commentsWithUserInfo.map((comment) => {
         return (
-          <div key={`animal-div-${comment.id}`}>
-            <div className="flex">
+          <div className="flex text-green-600" key={`animal-div-${comment.id}`}>
+            <div className="px-8">
               <AvatarPage username={comment.username} />
-              {/* {comment.id} */} Username: {comment.username}
-              <br />
-              Content: {comment.comment}
             </div>
+            {/* {comment.id} */} Username: {comment.username}
+            <br />
+            Content: {comment.comment}
             <br />
           </div>
         );

@@ -14,9 +14,6 @@ dependencies:
   '@mui/material':
     specifier: ^5.13.5
     version: 5.13.5(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@types/react@18.2.11)(react-dom@18.2.0)(react@18.2.0)
-  '@next/font':
-    specifier: ^13.4.9
-    version: 13.4.9
   bcrypt:
     specifier: ^5.1.0
     version: 5.1.0
@@ -998,10 +995,6 @@ packages:
     dependencies:
       glob: 7.1.7
     dev: true
-
-  /@next/font@13.4.9:
-    resolution: {integrity: sha512-aR0XEyd1cxqaKuelQFDGwUBYV0wyZfJTNiRoSk1XsECTyMhiSMmCOY7yOPMuPlw+6cctca0GyZXGGFb5EVhiRw==}
-    dev: false
 
   /@next/swc-darwin-arm64@13.4.5:
     resolution: {integrity: sha512-XvTzi2ASUN5bECFIAAcBiSoDb0xsq+KLj4F0bof4d4rdc+FgOqLvseGQaOXwVi1TIh5bHa7o4b6droSJMO5+2g==}

@@ -4,7 +4,11 @@ import { cookies } from 'next/headers';
 import { getCookie } from '../../../../util/cookies';
 import { parseJson } from '../../../../util/json';
 
-export async function createOrUpdateComment(threadId: number, comment: string) {
+export async function createOrUpdateComment(
+  threadId: number,
+  comment: string,
+  topic: string,
+) {
   // 1. get the current cookie
   // This get the cookies from the Request Headers
   const threadCommentsCookie = getCookie('threadComments');
@@ -40,7 +44,7 @@ export async function createOrUpdateComment(threadId: number, comment: string) {
       // we need insert the fruitCommnet
       id: threadId,
       comment,
-      topic: ,
+      topic,
     });
   }
 

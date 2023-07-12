@@ -5,7 +5,7 @@ import { createComment, getAllComments } from '../../../../database/comment';
 import { getValidSessionByToken } from '../../../../database/sessions';
 import { Comment } from '../../../../migrations/1686916408-createTableComments';
 
-export type Comment = {
+export type Comments = {
   id: number;
   topic: string;
   comment: string;
