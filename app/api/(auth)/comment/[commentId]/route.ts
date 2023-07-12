@@ -1,18 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import {
-  createComment,
-  deleteCommentById,
-  getCommentById,
-  updateCommentById,
-} from '../../../../../database/comment';
+import { createComment, getCommentById } from '../../../../../database/comment';
 import { Comment, Error } from '../route';
 
 type CommentsResponseBodyPost = { comment: Comment } | Error;
 type CommentsResponseBodyGet = { comment: Comment } | Error;
 type CommentsResponseBodyDelete = { comment: Comment } | Error;
-type CommentsResponseBodyPut = { comment: Comment } | Error;
-
+/* type CommentsResponseBodyPut = { comment: Comment } | Error;
+ */
 const commentSchema = z.object({
   userId: z.number(),
   topic: z.number(),
@@ -59,7 +54,7 @@ export async function POST(
   return NextResponse.json({ comment: comment });
 }
 
-export async function DELETE(
+/* export async function DELETE(
   request: NextRequest,
   { params }: { params: Record<string, string | string[]> },
 ): Promise<NextResponse<CommentsResponseBodyDelete>> {
@@ -74,7 +69,7 @@ export async function DELETE(
     );
   }
   // query the database to get all the animals
-  const comment = await deleteCommentById(commentId);
+/*   const comment = await deleteCommentById(commentId);
 
   if (!comment) {
     return NextResponse.json(
@@ -84,11 +79,11 @@ export async function DELETE(
       { status: 404 },
     );
   }
+ */
+/*   return NextResponse.json({ comment: commentId });
+ */
 
-  return NextResponse.json({ comment: comment });
-}
-
-export async function PUT(
+/* export async function PUT(
   request: NextRequest,
   { params }: { params: Record<string, string | string[]> },
 ): Promise<NextResponse<CommentsResponseBodyPut>> {
@@ -116,9 +111,9 @@ export async function PUT(
       },
       { status: 400 },
     );
-  }
-  // query the database to update the animal
-  const comment = await updateCommentById(
+  } */
+// query the database to update the animal
+/*   const comment = await updateCommentById(
     commentId,
     result.data.topic,
     result.data.comment,
@@ -136,4 +131,4 @@ export async function PUT(
   return NextResponse.json({
     comment: comment,
   });
-}
+} */
