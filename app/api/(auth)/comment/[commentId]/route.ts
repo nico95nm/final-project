@@ -1,34 +1,34 @@
-import { NextRequest, NextResponse } from 'next/server';
+/* import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { createComment } from '../../../../../database/comment';
 
 export type Error = {
   error: string;
-};
+}; */
 
-type CommentsResponseBodyPost = { comment: Comment } | Error;
-// type CommentsResponseBodyGet = { comment: Comment } | Error;
+/* type CommentsResponseBodyPost = { comment: Comment } | Error;
+ */ // type CommentsResponseBodyGet = { comment: Comment } | Error;
 /* type CommentsResponseBodyDelete = { comment: Comment } | Error; */
 /* type CommentsResponseBodyPut = { comment: Comment } | Error;
  */
-const commentSchema = z.object({
+/* const commentSchema = z.object({
   userId: z.number(),
   topic: z.number(),
   comment: z.string(),
 });
-
-export async function POST(
+ */
+/* export async function POST(
   request: NextRequest,
 ): Promise<NextResponse<CommentsResponseBodyPost>> {
-  const body = await request.json();
+  const body = await request.json(); */
 
-  // zod please verify the body matches my schema
-  const result = commentSchema.safeParse(body);
+// zod please verify the body matches my schema
+/*   const result = commentSchema.safeParse(body);
 
-  if (!result.success) {
-    // zod send you details about the error
-    // console.log(result.error);
-    return NextResponse.json(
+  if (!result.success) { */
+// zod send you details about the error
+// console.log(result.error);
+/*  return NextResponse.json(
       {
         error: 'The data is incomplete',
       },
@@ -50,7 +50,7 @@ export async function POST(
     );
   }
   return NextResponse.json({ comment: [postComment] });
-}
+} */
 
 /* export async function DELETE(
   request: NextRequest,
