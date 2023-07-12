@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { createComment, getAllComments } from '../../../../database/comment';
+import { createComment } from '../../../../database/comment';
 import { getUserBySessionToken } from '../../../../database/users';
 import { Comment } from '../../../../migrations/1686916408-createTableComments';
 
@@ -10,14 +10,13 @@ export type Error = {
 };
 
 type CommentsResponseBodyGet = { announcements: Comment[] } | Error;
-type CommentsResponseBodyPost = { announcement: Comment[] } | Error;
+type CommentsResponseBodyPost = { announcements: Comment[] } | Error;
 /* type CommentsResponseBodyDelete = { comment: Comment } | Error;
 type CommentsResponseBodyPut = { comment: Comment } | Error; */
 
 const commentSchema = z.object({
   userId: z.number(),
-  postId: z.number(),
-  topic: z.string(),
+  topic: z.number(),
   comment: z.string(),
 });
 
@@ -74,7 +73,7 @@ export async function POST(
       { status: 500 },
     );
   }
-  return NextResponse.json({ announcement: newComment });
+  return NextResponse.json({ announcements: [newComment] });
 }
 /*
 function getAllComment() {
