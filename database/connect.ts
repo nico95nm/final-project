@@ -2,6 +2,7 @@ import 'server-only';
 import { config } from 'dotenv';
 import { headers } from 'next/headers';
 import postgres, { Sql } from 'postgres';
+import { setEnvironmentVariables } from '../util/config.mjs';
 
 // Making a simple connection to Postgres
 // Next.js fast refresh increases database connection slot
@@ -12,6 +13,7 @@ import postgres, { Sql } from 'postgres';
 //     undefined: null,
 //   },
 // });
+setEnvironmentVariables();
 
 if (!process.env.FLY_IO) {
   config();

@@ -10,6 +10,7 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {},
       colors: {
         'dark blue': '#142C47',
         'light blue': '#ACC8E5',
