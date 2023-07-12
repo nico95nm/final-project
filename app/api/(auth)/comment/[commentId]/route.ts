@@ -4,8 +4,6 @@ import {
   createComment,
   deleteCommentById,
   getCommentById,
-  getComments,
-  postCommentById,
   updateCommentById,
 } from '../../../../../database/comment';
 import { Comment, Error } from '../route';
@@ -16,7 +14,8 @@ type CommentsResponseBodyDelete = { comment: Comment } | Error;
 type CommentsResponseBodyPut = { comment: Comment } | Error;
 
 const commentSchema = z.object({
-  topic: z.string(),
+  userId: z.number(),
+  topic: z.number(),
   comment: z.string(),
 });
 
@@ -39,7 +38,11 @@ export async function POST(
     );
   }
   // query the database to get all the animals
-  const comment = await createComment(result.data.topic, result.data.comment);
+  const comment = await createComment(
+    result.data.userId,
+    result.data.topic,
+    result.data.comment,
+  );
 
   if (!comment) {
     // zod send you details about the error
@@ -52,16 +55,6 @@ export async function POST(
     );
   }
   // query the database to get all the animals
-  const comment = await getCommentById(commentId);
-
-  if (!comment) {
-    return NextResponse.json(
-      {
-        error: 'Animal Not Found',
-      },
-      { status: 404 },
-    );
-  }
 
   return NextResponse.json({ comment: comment });
 }

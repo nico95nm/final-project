@@ -13,7 +13,7 @@ export default function Home() {
         <div className="mx-56 flex flex-col  text-red-800">
           <ul>
             <li>
-              <div className={`${raleway.className} textLine`}>
+              <div className={`${raleway.className} textLine py-8`}>
                 <Link href="/components/announcements">Announcements</Link>
                 <p>This is a page for a this sites announcements.</p>
               </div>

@@ -62,7 +62,6 @@ export default async function RootLayout({ children }: Props) {
   return (
     <html lang="en" className="bg-black box-border">
       <body>
-        <span className={`${orbitron.className} textName`}>Hello world </span>
         <nav>
           <div
             className={`${orbitron.className} pt-6 p-4 flexbox justify-center`}
