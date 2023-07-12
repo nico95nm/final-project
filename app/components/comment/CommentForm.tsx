@@ -2,7 +2,6 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import AvatarPage from '../../profile/[username]/Avatar';
 
 type Props = {
   comments: Comment[];
@@ -12,10 +11,10 @@ type Props = {
 };
 
 export default function CreateCommentForm({
-  userId,
+  comments,
   postId,
   topic,
-  comments,
+  userId,
 }: Props) {
   const [commentContent, setCommentContent] = useState('');
   const router = useRouter();
@@ -41,7 +40,7 @@ export default function CreateCommentForm({
       <div>
         <textarea
           onChange={(event) => setCommentContent(event.currentTarget.value)}
-          placeholder=" Write here:"
+          placeholder="Write here:"
         />
         <button onClick={async () => await createComment()}>Reply</button>
       </div>

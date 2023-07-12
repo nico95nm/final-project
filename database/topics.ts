@@ -1,4 +1,4 @@
-import { cache } from 'react';
+/* import { cache } from 'react';
 import { Topic } from '../migrations/1686916410-createTopics';
 import { sql } from './connect';
 
@@ -8,8 +8,8 @@ export const Topics = cache(async () => {
  `;
 
   return topics;
-});
-export const createTopic = cache(async (topic: string, topicInput: string) => {
+}); */
+/* export const createTopic = cache(async (title: string, user_id: number) => {
   const [Topics] = await sql<Topic[]>`
     INSERT INTO topics
       (title, user_id)
@@ -19,10 +19,10 @@ export const createTopic = cache(async (topic: string, topicInput: string) => {
       title,
       user_id
  `;
-  return topic;
-});
+  return Topics;
+}); */
 
-export const getTopicsWithLimitAndOffset = cache(
+/* export const getTopicsWithLimitAndOffset = cache(
   async (limit: number, offset: number) => {
     const topics = await sql<Topic[]>`
       SELECT
@@ -35,8 +35,8 @@ export const getTopicsWithLimitAndOffset = cache(
 
     return topics;
   },
-);
-
+); */
+/*
 export const getTopicsWithLimitAndOffsetBySessionToken = cache(
   async (limit: number, offset: number, token: string) => {
     const topics = await sql<Topic[]>`
@@ -62,8 +62,8 @@ export const getTopicsWithLimitAndOffsetBySessionToken = cache(
 
     return topics;
   },
-);
-
+); */
+/*
 export const getTopicsById = cache(async (id: number) => {
   const [Topics] = await sql<Topic[]>`
     SELECT
@@ -75,14 +75,14 @@ export const getTopicsById = cache(async (id: number) => {
   `;
   return Topics;
 });
-
-export const updateTopicById = cache(
+ */
+/* export const updateTopicById = cache(
   async (id: number, tittle: string, user_id: number) => {
     const [topics] = await sql<Topic[]>`
       UPDATE topics
       SET
         tittle = ${tittle},
-        user_id = ${user_id}}
+        user_id = ${user_id}
       WHERE
         id = ${id}
         RETURNING *
@@ -90,8 +90,8 @@ export const updateTopicById = cache(
 
     return topics;
   },
-);
-export const postTopicById = cache(async (tittle: string, user_id: number) => {
+); */
+/* export const postTopicById = cache(async (tittle: string, user_id: number) => {
   const [user] = await sql<Topic[]>`
     INSERT INTO users
       (tittle, user_id)
@@ -104,8 +104,8 @@ export const postTopicById = cache(async (tittle: string, user_id: number) => {
  `;
 
   return user;
-});
-
+}); */
+/*
 export const deleteTopicById = cache(async (id: number) => {
   const [topic] = await sql<Topic[]>`
     DELETE FROM
@@ -115,9 +115,9 @@ export const deleteTopicById = cache(async (id: number) => {
     RETURNING *
   `;
   return topic;
-});
+}); */
 // also ask for this
-export const getTopics = cache(async (id: number) => {
+/* export const getTopics = cache(async (id: number) => {
   const newTopic = await sql<Topic[]>`
    SELECT
      topics.id AS topicss_id,
@@ -133,7 +133,7 @@ export const getTopics = cache(async (id: number) => {
   `;
   return newTopic;
 });
-
+ */
 // Join query for getting a single animal with related foods using json_agg
 /* export const getTopicById = cache(async (id: number) => {
   const [topic] = await sql<AnimalWithFoodsInJsonAgg[]>`

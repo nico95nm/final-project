@@ -31,9 +31,9 @@ export default function threadCommentForm(props: Props) {
         onChange={handleChange}
       />
       */
-{
-  /* Instead of using onClick we use formAction */
-}
+
+/* Instead of using onClick we use formAction */
+
 /*       <button
                 className={style.button}
          formAction={async () => {

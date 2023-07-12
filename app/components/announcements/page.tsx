@@ -37,7 +37,7 @@ export default async function ActivityPage() {
   console.log(comments);
   return (
     <main>
-      <div className="flex gap-4 text-white">
+      <div className="flex gap-4 text-blue-500">
         <AvatarPage username={user.username} />
         <CreateCommentForm
           topic={0}

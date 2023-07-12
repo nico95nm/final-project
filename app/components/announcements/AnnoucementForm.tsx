@@ -1,4 +1,4 @@
-'use client';
+/* 'use client';
 
 import { cookies } from 'next/headers';
 import { useRouter } from 'next/navigation';
@@ -17,14 +17,14 @@ type Props = {
 export default function CreatePostForm({ usersId, topic, comment }: Props) {
   /*   const [topicList, setTopicList] = useState(topics);
    */
-
+/*
   const [topicInput, setTopicInput] = useState('');
-  const [comments, setComments] = useState(comment);
-  /*  const [userid, setUserid] = useState(post.id);
-   */
-  const router = useRouter()
-
-  async function createPost() {
+  const [comments, setComments] = useState(comment);  */
+/*  const [userid, setUserid] = useState(post.id);
+ */
+/*   const router = useRouter()
+ */
+/*   async function createPost() {
     const response = await fetch('/api/announcements', {
       method: 'POST',
       body: JSON.stringify({
@@ -41,19 +41,24 @@ export default function CreatePostForm({ usersId, topic, comment }: Props) {
 
     setComments('');
   }
-
-  return (
+ */
+/*   return (
     <form onSubmit={(event) => event.preventDefault()}>
       <div>
-        <br />
-        {/*         <textarea
+        <br /> */
+{
+  /*         <textarea
           value={comments}
           onChange={(event) => setComments(event.currentTarget.value)}
           placeholder="Say something..."
           required
         />
-        <button onClick={async () => await createPost()}>Post</button> */}
-      </div>
+        <button onClick={async () => await createPost()}>Post</button> */
+}
+{
+  /*       </div>
     </form>
   );
+}
+ */
 }

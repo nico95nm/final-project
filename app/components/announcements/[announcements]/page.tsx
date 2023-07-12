@@ -1,4 +1,4 @@
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+/* import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { notFound } from 'next/navigation';
 import { Editor } from 'react-draft-wysiwyg';
 import { getCookie } from '../../../../util/cookies';
@@ -13,8 +13,8 @@ export type CookieCommentItem = {
   id: number;
   topic: string;
   comment?: string;
-};
-
+}; */
+/*
 export default function CommentThreadPage(props: Props) {
   const commentThreadsCookie = getCookie('commentThread');
   const commentThreads = !commentThreadsCookie
@@ -24,12 +24,12 @@ export default function CommentThreadPage(props: Props) {
   const commentThread = commentThreads?.find((commentThread) => {
     return commentThread.id;
   });
-
-  return (
+ */
+/*   return (
     <>
-      {/*       {commentThread?.comment} */}
-      {/*       <commentThreads commentId={commentThread.id} />
-       */}{' '}
+           {commentThread?.comment}
+       <commentThreads commentId={commentThread.id} />
+
     </>
   );
-}
+} */

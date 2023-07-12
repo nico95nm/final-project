@@ -9,8 +9,8 @@ export type Error = {
   error: string;
 };
 
-type CommentsResponseBodyGet = { announcements: Comment[] } | Error;
 type CommentsResponseBodyPost = { announcements: Comment[] } | Error;
+/* type CommentsResponseBodyGet = { announcements: Comment[] } | Error;
 /* type CommentsResponseBodyDelete = { comment: Comment } | Error;
 type CommentsResponseBodyPut = { comment: Comment } | Error; */
 
@@ -20,7 +20,7 @@ const commentSchema = z.object({
   comment: z.string(),
 });
 
-export async function GET(
+/* export async function GET(
   request: NextRequest,
 ): Promise<NextResponse<CommentsResponseBodyGet>> {
   return NextResponse.json(
@@ -30,17 +30,17 @@ export async function GET(
     { status: 401 },
   );
 }
-
+ */
 export async function POST(
   request: NextRequest,
 ): Promise<NextResponse<CommentsResponseBodyPost>> {
-  const { searchParams } = new URL(request.url);
-  const sessionTokenCookie = cookies().get('sessionToken');
+  /*   const { searchParams } = new URL(request.url);
+   */ const sessionTokenCookie = cookies().get('sessionToken');
   const userSession =
     sessionTokenCookie &&
     (await getUserBySessionToken(sessionTokenCookie.value));
-  console.log('This comes from API', userSession);
-  if (!userSession) {
+  /*   console.log('This comes from API', userSession);
+   */ if (!userSession) {
     return NextResponse.json(
       {
         error: 'Session token is not valid',

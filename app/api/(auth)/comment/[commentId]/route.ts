@@ -3,9 +3,11 @@ import { z } from 'zod';
 import { createComment, getCommentById } from '../../../../../database/comment';
 import { Comments, Error } from '../route';
 
-type CommentsResponseBodyPost = { comments: Comments } | Error;
-type CommentsResponseBodyGet = { comment: Comment } | Error;
-type CommentsResponseBodyDelete = { comment: Comment } | Error;
+type CommentsResponseBodyPost =
+  | { userId: number; topic: number; comments: Comments }
+  | Error;
+/*  type CommentsResponseBodyGet = { comment: Comment } | Error;
+ */ /* type CommentsResponseBodyDelete = { comment: Comment } | Error; */
 /* type CommentsResponseBodyPut = { comment: Comment } | Error;
  */
 const commentSchema = z.object({

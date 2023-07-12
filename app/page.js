@@ -1,5 +1,4 @@
-import { Inter, Orbitron, Raleway } from 'next/font/google';
-import Image from 'next/image';
+import { Raleway } from 'next/font/google';
 import Link from 'next/link';
 
 const raleway = Raleway({
@@ -15,6 +14,7 @@ export default function Home() {
             <li>
               <div className={`${raleway.className}  py-8`}>
                 <Link href="/components/announcements">Announcements</Link>
+
                 <p>This is a page for a this sites announcements.</p>
               </div>
             </li>
@@ -34,8 +34,7 @@ export default function Home() {
                     </p>
                   </div>
                 </li>
-                <br />
-                <br />
+
                 <li>
                   <div className="textLine">
                     <Link href="/topics/gamingNews">Gaming News</Link>
@@ -45,8 +44,6 @@ export default function Home() {
                     </p>
                   </div>
                 </li>
-                <br />
-                <br />
 
                 <li>
                   <div className="textLine">
@@ -58,8 +55,7 @@ export default function Home() {
                     </p>
                   </div>
                 </li>
-                <br />
-                <br />
+
                 <li>
                   <div className="textLine">
                     <Link href="/topics/gamingMusic">Gaming Music</Link>
@@ -83,8 +79,6 @@ export default function Home() {
                   <p>This is a paragraph</p>
                 </div>
               </li>
-              <br />
-              <br />
 
               <li>
                 <div className="textLine">
