@@ -36,25 +36,32 @@ export default async function ActivityPage() {
   console.log(commentsWithUserInfo);
   console.log(comments);
   return (
-    <main>
-      <div className="flex gap-4 text-blue-500">
+    <main className="text-2xl">
+      <div
+        className="  flex pl-8 pt-6
+ text-blue-500"
+      >
         <AvatarPage username={user.username} />
-        <CreateCommentForm
-          topic={0}
-          userId={user.id}
-          postId={user.id}
-          comments={[]}
-        />
+        <div>
+          <CreateCommentForm
+            topic={0}
+            userId={user.id}
+            postId={user.id}
+            comments={[]}
+          />
+        </div>
       </div>
       {commentsWithUserInfo.map((comment) => {
         return (
-          <div className="flex text-green-600" key={`animal-div-${comment.id}`}>
-            <div className="px-8">
-              <AvatarPage username={comment.username} />
-            </div>
-            {/* {comment.id} */} Username: {comment.username}
+          <div
+            className="textName pt-6 p-4 flexbox justify-centerborder-2 border-sky-500 flex  m-4" /* {`${textNAm.className} pt-6 p-4 flexbox justify-centerborder-2 border-sky-500 flex  m-4 `} */
+            key={`animal-div-${comment.id}`}
+          >
+            <AvatarPage username={comment.username} />
+            {/* {comment.id} */} <div className="font-bold mx-4">Username:</div>{' '}
+            {comment.username}
             <br />
-            Content: {comment.comment}
+            <div className="font-bold mx-4">Content:</div> {comment.comment}
             <br />
           </div>
         );

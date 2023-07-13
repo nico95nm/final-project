@@ -41,7 +41,17 @@ export const getAllComments = cache(async () => {
   `;
   return comments;
 });
-
+export const getAllCommentsByTopics = cache(async (topic: number) => {
+  const comments = await sql<Comment[]>`
+    SELECT
+      *
+    FROM
+      comments
+      WHERE
+      topic = ${topic}
+  `;
+  return comments;
+});
 export const getCommentById = cache(async (id: number) => {
   const [comment] = await sql<Comment[]>`
     SELECT

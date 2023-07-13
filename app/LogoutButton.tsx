@@ -8,6 +8,7 @@ export function LogoutButton() {
   return (
     <form>
       <button
+        style={{ marginLeft: '25px' }}
         /*         className={styles.button}
          */ formAction={async () => {
           await logout();

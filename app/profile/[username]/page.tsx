@@ -19,6 +19,16 @@ export default async function ProfileUsernamePage({ params }: Props) {
           <span>PROFILE</span>
         </div>
         <AvatarPage username={user.username} />
+        <span className="text-red-500">
+          Name <input />
+        </span>
+        <span>
+          Email
+          <input />
+          <span>
+            Bio: <textarea />
+          </span>
+        </span>
         {/*       <div>id: {user.id}</div> */}
       </div>
     </main>

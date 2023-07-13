@@ -1,5 +1,5 @@
 import './globals.scss';
-import { Orbitron } from 'next/font/google';
+import { Orbitron, Raleway } from 'next/font/google';
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,7 +9,11 @@ import { LogoutButton } from './LogoutButton';
 
 const orbitron = Orbitron({
   subsets: ['latin'],
-  weight: '400',
+  weight: '600',
+});
+const raleway = Raleway({
+  subsets: ['latin'],
+  weight: '600',
 });
 
 export const metadata = {
@@ -68,8 +72,8 @@ export default async function RootLayout({ children }: Props) {
                 <Image
                   src="/images/logo-bk.png"
                   alt="Logo"
-                  width={100}
-                  height={100}
+                  width={150}
+                  height={150}
                 />
               </Link>
               {/*   <Link href="/">LOGO Gaming Galaxy LOGO</Link> */}
@@ -78,8 +82,9 @@ export default async function RootLayout({ children }: Props) {
                   <div
                     className={`${orbitron.className}  pt-6 p-4 flexbox justify-center`}
                   >
-                    <div className="w-72 h-16 text-white text-4xl">
+                    <div className=" flex pl-5 text-white text-4xl">
                       <svg
+                        className="ms-6"
                         xmlns="http://www.w3.org/2000/svg"
                         width="53"
                         height="49"
@@ -91,15 +96,20 @@ export default async function RootLayout({ children }: Props) {
                           fill="#F9F871"
                         />
                       </svg>
-                      <Link href={`/profile/${user.username}`}>
+
+                      <Link
+                        style={{ marginLeft: '25px' }}
+                        href={`/profile/${user.username}`}
+                      >
                         {user.username}
                       </Link>
                       {/*                       <AvatarPage username={user.username} />
                        */}
                     </div>
                   </div>
-                  <div className="w-72 h-16 text-white text-4xl font-normal">
+                  <div className="w-72 h-16 text-white flex text-4xl font-normal">
                     <svg
+                      className="icon"
                       xmlns="http://www.w3.org/2000/svg"
                       width="68"
                       height="61"
@@ -116,8 +126,9 @@ export default async function RootLayout({ children }: Props) {
                 </>
               ) : (
                 <>
-                  <div>
+                  <div className="flex">
                     <svg
+                      className="icon"
                       xmlns="http://www.w3.org/2000/svg"
                       width="53"
                       height="49"
@@ -129,12 +140,15 @@ export default async function RootLayout({ children }: Props) {
                         fill="#F9F871"
                       />
                     </svg>
-                    <div className="w-72 h-16 text-white text-4xl">
-                      <Link href="/register">register</Link>
+                    <div className="w-72 h-16 text-white text-4xl register">
+                      <Link style={{ marginLeft: '25px' }} href="/register">
+                        register
+                      </Link>
                     </div>
                   </div>
-                  <div>
+                  <div className=" flex">
                     <svg
+                      className="icon"
                       xmlns="http://www.w3.org/2000/svg"
                       width="68"
                       height="61"
@@ -146,8 +160,10 @@ export default async function RootLayout({ children }: Props) {
                         fill="#FF007A"
                       />
                     </svg>
-                    <div className=" w-72 h-16 text-white text-4xl ">
-                      <Link href="/login">login</Link>
+                    <div className=" w-72 h-16 text-white text-4xl register">
+                      <Link style={{ marginLeft: '25px' }} href="/login">
+                        login
+                      </Link>
                     </div>
                   </div>
                 </>

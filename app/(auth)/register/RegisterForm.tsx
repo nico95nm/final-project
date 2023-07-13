@@ -33,24 +33,36 @@ export default function RegisterForm() {
   }
 
   return (
-    <form onSubmit={(event) => event.preventDefault()}>
-      <label>
-        username:
-        <input
-          value={username}
-          onChange={(event) => setUsername(event.currentTarget.value)}
-        />
-      </label>
-      <label>
-        password:
-        <input
-          type="password"
-          value={password}
-          onChange={(event) => setPassword(event.currentTarget.value)}
-        />
-      </label>
-      <button onClick={async () => await register()}>sign up</button>
-      {error !== '' && <div>{error}</div>}
-    </form>
+    <div className="container">
+      <form
+        onSubmit={(event) => event.preventDefault()}
+        className="bg-blue text-center w-1/3 px-3 py-4 text-white mx-auto rounded"
+      >
+        <label>
+          Username:
+          <input
+            className="text-black block w-full mx-auto text-sm py-2 px-3 rounded"
+            value={username}
+            onChange={(event) => setUsername(event.currentTarget.value)}
+          />
+        </label>
+        <label>
+          Password:
+          <input
+            className="text-black block w-full mx-auto text-sm py-2 px-3 rounded my-3"
+            type="password"
+            value={password}
+            onChange={(event) => setPassword(event.currentTarget.value)}
+          />
+        </label>
+        <button
+          className="bg-blue text-white font-bold py-2 px-4 rounded border block mx-auto w-full"
+          onClick={async () => await register()}
+        >
+          Sign up
+        </button>
+        {error !== '' && <div>{error}</div>}
+      </form>
+    </div>
   );
 }

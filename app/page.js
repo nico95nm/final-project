@@ -9,82 +9,88 @@ export default function Home() {
   return (
     <main>
       <div>
-        <div className="mx-56 flex flex-col  text-pink-800">
+        <div className=" text-[2rem] mx-56 flex flex-col pt-8  text-white">
           <ul>
             <li>
-              <div className={`${raleway.className}  py-8`}>
+              <div className={`${raleway.className} mainText pt-4 `}>
                 <Link href="/components/announcements">Announcements</Link>
-
-                <p>This is a page for a this sites announcements.</p>
               </div>
+              <p className="ml-10">
+                This is a page for a this sites announcements.
+              </p>
+
+              <hr className="h-px my-8 bg-gray-200 border-0 bg-orange-600" />
             </li>
           </ul>
-          <br />
-          <br />
+
           <div>
             <nav>
               <ul>
                 <li>
-                  <div className="textLine">
+                  <div className={`${raleway.className} mainText pt-4`}>
                     <Link href="/topics/generalChat">General Games Chat</Link>
-                    <p>
-                      This is the forum to post any general topics relating to
-                      gaming at large. Chat about your favorite games, recent
-                      purchases and all the platforms.
-                    </p>
                   </div>
+                  <p>
+                    This is the forum to post any general topics relating to
+                    gaming at large. Chat about your favorite games, recent
+                    purchases and all the platforms.
+                  </p>
+                  <hr className="h-px my-8 bg-gray-200 border-0 bg-orange-600" />
                 </li>
 
                 <li>
-                  <div className="textLine">
+                  <div className={`${raleway.className} mainText pt-4`}>
                     <Link href="/topics/gamingNews">Gaming News</Link>
-                    <p>
-                      Catch up on the latest buzz in the gaming world. Here you
-                      can discuss news and rumors on games, developers and more.
-                    </p>
                   </div>
+                  <p>
+                    Catch up on the latest buzz in the gaming world. Here you
+                    can discuss news and rumors on games, developers and more.
+                  </p>
+                  <hr className="h-px my-8 bg-gray-200 border-0 bg-orange-600" />
                 </li>
 
                 <li>
-                  <div className="textLine">
+                  <div className={`${raleway.className}  mainText pt-4`}>
                     <Link href="/topics/gamingTopic">Gaming Topic</Link>
-                    <p>
-                      This is the forum to post any general topics relating to
-                      gaming at large. Chat about your favorite games, recent
-                      purchases, etc.
-                    </p>
                   </div>
+                  <p>
+                    This is the forum to post any general topics relating to
+                    gaming at large. Chat about your favorite games, recent
+                    purchases, etc.
+                  </p>
+                  <hr className="h-px my-8 bg-gray-200 border-0 bg-orange-600" />
                 </li>
 
                 <li>
-                  <div className="textLine">
+                  <div className={`${raleway.className} mainText pt-4`}>
                     <Link href="/topics/gamingMusic">Gaming Music</Link>
-                    <p>
-                      Gaming forum buzzing with discussions on captivating video
-                      game soundtracks, where users share favorites, recommend
-                      hidden gems, and praise talented composers.
-                    </p>
                   </div>
+                  <p>
+                    Gaming forum buzzing with discussions on captivating video
+                    game soundtracks, where users share favorites, recommend
+                    hidden gems, and praise talented composers.
+                  </p>
+                  <hr className="h-px my-8 bg-gray-200 border-0 bg-orange-600" />
                 </li>
               </ul>
             </nav>
           </div>
-          <br />
-          <br />
+
           <div>
             <ul>
               <li>
-                <div className="textLine">
+                <div className={`${raleway.className} mainText pt-4`}>
                   <Link href="/topics/offTopic">Off Topics</Link>
-                  <p>This is a paragraph</p>
                 </div>
+                <p>This is a paragraph</p>
+                <hr className="h-px my-8 bg-gray-200 border-0 bg-orange-600" />
               </li>
 
               <li>
-                <div className="textLine">
+                <div className={`${raleway.className} mainText pt-4`}>
                   <Link href="/topics/generalChat">Intorduction</Link>
-                  <p>This is a pasddsdagraph</p>
                 </div>
+                <p>This is a pasddsdagraph</p>
               </li>
             </ul>
           </div>

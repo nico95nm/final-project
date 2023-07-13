@@ -39,26 +39,37 @@ export default function LoginForm(props: Props) {
   }
 
   return (
-    <form onSubmit={(event) => event.preventDefault()}>
-      <label>
-        Username:
-        <input
-          value={username}
-          onChange={(event) => setUsername(event.currentTarget.value)}
-        />
-      </label>
-      <label>
-        Password
-        <input
-          value={password}
-          type="password"
-          onChange={(event) => setPassword(event.currentTarget.value)}
-        />
-      </label>
-      <button className={styles.button} onClick={async () => await login()}>
-        log in
-      </button>
-      {error !== '' && <div className={styles.error}>{error}</div>}
-    </form>
+    <div className="container">
+      <form
+        className="text-black bg-blue text-center w-1/3 px-3 py-4  mx-auto rounded"
+        onSubmit={(event) => event.preventDefault()}
+        placeholder="Username"
+      >
+        <label>
+          Username:
+          <input
+            value={username}
+            onChange={(event) => setUsername(event.currentTarget.value)}
+            className=" text-black block w-full mx-auto text-sm py-2 px-3 rounded"
+          />
+        </label>
+        <label>
+          Password:
+          <input
+            className="block w-full mx-auto text-sm py-2 px-3 rounded my-3"
+            value={password}
+            type="password"
+            onChange={(event) => setPassword(event.currentTarget.value)}
+          />
+        </label>
+        <button
+          className="bg-blue text-white font-bold py-2 px-4 rounded border block mx-auto w-full"
+          /* {styles.button} */ onClick={async () => await login()}
+        >
+          log in
+        </button>
+        {error !== '' && <div className={styles.error}>{error}</div>}
+      </form>
+    </div>
   );
 }
