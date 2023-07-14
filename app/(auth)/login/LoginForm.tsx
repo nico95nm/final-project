@@ -41,7 +41,7 @@ export default function LoginForm(props: Props) {
   return (
     <div className="container">
       <form
-        className="text-black bg-blue text-center w-1/3 px-3 py-4  mx-auto rounded"
+        className="text-white bg-blue text-center w-1/3 px-3 py-4  mx-auto rounded"
         onSubmit={(event) => event.preventDefault()}
         placeholder="Username"
       >
@@ -56,7 +56,7 @@ export default function LoginForm(props: Props) {
         <label>
           Password:
           <input
-            className="block w-full mx-auto text-sm py-2 px-3 rounded my-3"
+            className="text-black block w-full mx-auto text-sm py-2 px-3 rounded my-3"
             value={password}
             type="password"
             onChange={(event) => setPassword(event.currentTarget.value)}
@@ -68,7 +68,7 @@ export default function LoginForm(props: Props) {
         >
           log in
         </button>
-        {error !== '' && <div className={styles.error}>{error}</div>}
+        {error !== '' && <div className="text-red-400">{error}</div>}
       </form>
     </div>
   );

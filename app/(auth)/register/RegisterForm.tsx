@@ -61,7 +61,7 @@ export default function RegisterForm() {
         >
           Sign up
         </button>
-        {error !== '' && <div>{error}</div>}
+        {error !== '' && <div className="text-red-400">{error}</div>}
       </form>
     </div>
   );
