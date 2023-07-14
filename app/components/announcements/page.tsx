@@ -54,15 +54,21 @@ export default async function ActivityPage() {
       {commentsWithUserInfo.map((comment) => {
         return (
           <div
-            className="textName pt-6 p-4 flexbox justify-centerborder-2 border-sky-500 flex  m-4" /* {`${textNAm.className} pt-6 p-4 flexbox justify-centerborder-2 border-sky-500 flex  m-4 `} */
             key={`animal-div-${comment.id}`}
+            className="bg-white border rounded-lg shadow-lg p-4 m-10"
           >
-            <AvatarPage username={comment.username} />
-            {/* {comment.id} */} <div className="font-bold mx-4">Username:</div>{' '}
-            {comment.username}
-            <br />
-            <div className="font-bold mx-4">Content:</div> {comment.comment}
-            <br />
+            <div className="flex gap-4">
+              <AvatarPage username={comment.username} />
+              <div className="flex flex-col w-full">
+                <div className="flex justify-between">
+                  <p className="text-xl truncate overflow-hidden">
+                    {' '}
+                    {comment.username}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <p className="mt-4 text-gray-500">{comment.comment}</p>
           </div>
         );
       })}
