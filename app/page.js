@@ -8,12 +8,16 @@ const raleway = Raleway({
 export default function Home() {
   return (
     <main>
-      <div className="m-6 grid grid-cols-[repeat(auto-fill,minmax(400px,1fr))] gap-10 text-white">
+      <div className="m-6 px-20 grid grid-cols-[repeat(auto-fill,minmax(400px,1fr))] gap-10 text-white">
         <div>
           <Link href="/components/announcements">
-            <h1 className={raleway.className}>Announcements</h1>
+            <h1
+              className={`${raleway.className} text-2xl hover-underline-animation`}
+            >
+              Announcements
+            </h1>
           </Link>
-          <p className="ml-10 my-4">
+          <p>
             Welcome to our Announcement Corner! This dynamic page serves as the
             central hub for all the exciting updates and breaking news related
             to our site. Stay connected and informed about the latest
@@ -26,8 +30,12 @@ export default function Home() {
         </div>
 
         <div>
-          <h1 className={raleway.className}>General Games Chat</h1>
-          <p className="ml-10 my-4">
+          <h1
+            className={`${raleway.className} text-2xl hover-underline-animation`}
+          >
+            General Games Chat
+          </h1>
+          <p>
             Welcome to our Gaming Discussion Forum! This dedicated space is the
             perfect platform for engaging in insightful conversations about
             gaming on a broader scale. Whether you're passionate about specific
@@ -41,8 +49,12 @@ export default function Home() {
         </div>
 
         <div>
-          <h1 className={raleway.className}>Gaming News</h1>
-          <p className="ml-10 my-4">
+          <h1
+            className={`${raleway.className} text-2xl hover-underline-animation`}
+          >
+            Gaming News
+          </h1>
+          <p>
             Welcome to the Gaming Buzz Hub! Immerse yourself in the thrilling
             realm of the gaming world and stay up to date with the latest buzz.
             This is the ultimate destination for passionate gamers like you to
@@ -57,8 +69,12 @@ export default function Home() {
         </div>
 
         <div>
-          <h1 className={`${raleway.className}`}>Gaming Topic</h1>
-          <p className="ml-10 my-4">
+          <h1
+            className={`${raleway.className} text-2xl hover-underline-animation`}
+          >
+            Gaming Topic
+          </h1>
+          <p>
             Welcome to our Gaming Enthusiasts Forum! This vibrant community is
             the perfect place to discuss a wide range of gaming topics that
             capture your passion. Dive into conversations about your favorite
@@ -74,8 +90,12 @@ export default function Home() {
         </div>
 
         <div>
-          <h1 className={`${raleway.className}`}>Gaming Topic</h1>
-          <p className="ml-10 my-4">
+          <h1
+            className={`${raleway.className} text-2xl hover-underline-animation`}
+          >
+            Gaming Topic
+          </h1>
+          <p>
             Welcome to our Melodic Gaming Forum! Immerse yourself in a
             harmonious community where gaming and music intertwine. Here,
             passionate gamers like you gather to discuss captivating video game
@@ -93,8 +113,12 @@ export default function Home() {
         </div>
 
         <div>
-          <h1 className={`${raleway.className}`}>Gaming Topic</h1>{' '}
-          <p className="ml-10 my-4">
+          <h1
+            className={`${raleway.className} text-2xl hover-underline-animation`}
+          >
+            Gaming Topic
+          </h1>{' '}
+          <p>
             Welcome to our Gaming Discussion Forum! This dedicated space is the
             perfect platform for engaging in insightful conversations about
             gaming on a broader scale. Whether you're passionate about specific

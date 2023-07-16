@@ -82,7 +82,7 @@ export default async function RootLayout({ children }: Props) {
                   <div
                     className={`${orbitron.className}  pt-6 p-4 flexbox justify-center`}
                   >
-                    <div className=" flex pl-5 text-white text-4xl">
+                    <div className=" flex pl-5 text-[#F9F871] text-4xl">
                       <svg
                         className="ms-6"
                         xmlns="http://www.w3.org/2000/svg"

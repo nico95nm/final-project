@@ -40,6 +40,7 @@ export default function LoginForm(props: Props) {
 
   return (
     <div className="container">
+      <h1 className="text-white text-center">LOG IN</h1>
       <form
         className="text-white bg-blue text-center w-1/3 px-3 py-4  mx-auto rounded"
         onSubmit={(event) => event.preventDefault()}
