@@ -1,4 +1,4 @@
--- Create animalis table
+-- Create comment table
 CREATE TABLE comments (
 id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
 topic varchar(100) NULL,
