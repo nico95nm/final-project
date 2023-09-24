@@ -11,7 +11,7 @@ export type Comment = {
 export async function up(sql: Sql) {
   await sql`
  CREATE TABLE comments (
-/*  Create animalis table */
+/*  Create comments table */
 id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
 users_id integer NOT NULL,
 topic varchar(100) NULL,
